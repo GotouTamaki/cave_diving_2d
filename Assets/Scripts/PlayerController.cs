@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : InputBase
 {
     [SerializeField] float _maxHp = 1;
     [SerializeField] float _hp = 1;
@@ -21,12 +21,16 @@ public class PlayerController : MonoBehaviour
 
 
     // 各種初期化
-    InputAction _action;
+   
     Rigidbody2D _rb = default;
     SpriteRenderer _sprite = default;
     PlayerState _state = PlayerState.Normal;
     // 水平方向の入力値
     float _h;
+    // ジャンプの入力値
+    float _j;
+    bool _isGrounded = false;
+    float _axis = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -35,22 +39,23 @@ public class PlayerController : MonoBehaviour
         _sprite = GetComponent<SpriteRenderer>();
     }
 
-    // 有効化
-    private void OnEnable()
-    {
-        // InputActionを有効化
-        // これをしないと入力を受け取れないことに注意
-        _action?.Enable();
-    }
-
     // Update is called once per frame
     void Update()
     {
-        // 入力検出と移動
-        //float h = InputAction.CallbackContext;
-        //float v = Input.GetAxisRaw("Vertical");
-        //Vector2 dir = new Vector2(h, v).normalized;
 
+            _h = _inputController.Player.Move.ReadValue<float>();
+            //Debug.Log("移動処理");
+
+        if (_inputController.Player.Jump.triggered && _isGrounded)//押したことを判定
+        {
+            // ジャンプの力を加える
+            _rb.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+            //Debug.Log("ジャンプ処理");
+        }
+
+        _axis = _inputController.Player.Move.ReadValue<float>();//入力方向をfloat型で取得
+
+        // 状態異常
         if (_state == PlayerState.Burning)
         {
             _hp -= _lifeReduceSpeedOnBurning * Time.deltaTime;
@@ -70,7 +75,17 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // 横移動の力を加えるのは FixedUpdate で行う
-        //_rb.AddForce(Vector2.right * _h * _moveSpeed, ForceMode2D.Force);
+        _rb.AddForce(Vector2.right * _h * _moveSpeed, ForceMode2D.Force);   
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _isGrounded = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        _isGrounded = false;
     }
 
     public float PlayerHp

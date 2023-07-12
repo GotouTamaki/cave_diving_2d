@@ -8,7 +8,7 @@ public class EnemyBase : MonoBehaviour
 {
     [SerializeField] float _enemyMaxHp = 10;
     [SerializeField] float _enemyHp = 1;
-    [SerializeField] float _moveSpede = 1f;
+    [SerializeField] float _moveSpeed = 1f;
     /// <summary>”RÄó‘Ô‚Ì‚É‚Ç‚ê‚­‚ç‚¢ƒ‰ƒCƒt‚ªŒ¸‚é‚©</summary>
     [SerializeField] float _lifeReduceSpeedOnBurning = 1;
     [SerializeField] float _burningTime = 5f;
