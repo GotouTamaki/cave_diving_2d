@@ -31,7 +31,7 @@ public abstract class BulletBase : MonoBehaviour
 
     protected void FixedUpdate()
     {
-       _rb.AddForce(Vector2.right * _bulletSpeed, ForceMode2D.Force);      
+        _rb.velocity = Vector2.right * _bulletSpeed;
     }
 
     public abstract void BulletEnemyHit(EnemyBase enemyBase);
