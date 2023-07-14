@@ -123,7 +123,7 @@ MonoBehaviour:
   _bulletSpeed: 10
   _lifeTime: 5
   _damage: 1
-  _interval: 1
+  _interval: 0.5
 --- !u!70 &699091085041576335
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

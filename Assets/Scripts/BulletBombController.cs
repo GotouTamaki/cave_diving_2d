@@ -6,6 +6,6 @@ public class BulletBombController : BulletBase
 {
     public override void BulletEnemyHit(EnemyBase enemyBase)
     {
-
     }
+
 }

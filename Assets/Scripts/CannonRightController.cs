@@ -15,30 +15,38 @@ public class CannonRightController : InputBase
     // Start is called before the first frame update
     void Start()
     {
+        //_interval = _bullet[_bulletType].BulletBase.Interval();
         _timer = _interval;
     }
 
     // Update is called once per frame
     void Update()
     {
+        _timer += Time.deltaTime;
+
+        if (_timer > _interval )
+        {
+            if (_inputController.Player.FireRight.IsPressed())//押したことを判定
+            {
+                GameObject bullet = Instantiate(_bullet[_bulletType], _muzzle.position, this.transform.rotation);
+                Debug.Log($"右砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
+                _interval = bullet.GetComponent<BulletBase>().Interval();
+                _timer = 0f;
+            }
+        }
+
         if (_inputController.Player.BulletChangeR.triggered)//押したことを判定
         {
-            Debug.Log(_bulletType);
-            if (_bulletType >= 5)
+            ++_bulletType;
+ 
+            if (_bulletType > 4)
             {
                 _bulletType = 0;
             }
-            else
-            {
-                ++_bulletType;
-            }
 
+            Debug.Log(_bulletType);
         }
 
-            if (_inputController.Player.FireRight.triggered)//押したことを判定
-        {
-            Instantiate(_bullet[_bulletType], _muzzle.position, _muzzle.rotation);
-            Debug.Log("右砲発射");
-        }
+
     }
 }

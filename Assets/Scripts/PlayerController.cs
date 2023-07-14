@@ -80,12 +80,18 @@ public class PlayerController : InputBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _isGrounded = true;
+        if (collision.gameObject.tag != "Bullet")
+        {
+            _isGrounded = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _isGrounded = false;
+        if (collision.gameObject.tag != "Bullet")
+        {
+            _isGrounded = false;
+        }
     }
 
     public float PlayerHp
