@@ -30,10 +30,11 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //// 入力検出と移動
-        //float h = Input.GetAxisRaw("Horizontal");
-        //float v = Input.GetAxisRaw("Vertical");
-        //Vector2 dir = new Vector2(h, v).normalized;
+        // 生死判定
+        if (_enemyHp < 0)
+        {
+            _state = EnemyState.Dead;
+        }
 
         if (_state == EnemyState.Burning)
         {
@@ -44,6 +45,15 @@ public class EnemyBase : MonoBehaviour
         {
             //_rb.velocity = dir * _moveSpede * _speedReductionRatioOnSlow;
             _sprite.color = Color.cyan;
+        }
+        else if (_state == EnemyState.Dead)
+        {
+            Debug.Log("やられた！");
+            //if (倒されたとき用のプレハブ)
+            //{
+            //    Instantiate(倒されたとき用のプレハブ, this.transform.position, 倒されたとき用のプレハブ.transform.rotation);
+            //}
+            Destroy(this.gameObject);
         }
         else
         {
@@ -68,6 +78,7 @@ public class EnemyBase : MonoBehaviour
         Normal,
         Burning,
         Slow,
+        Dead,
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
