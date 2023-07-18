@@ -27,10 +27,13 @@ public class PlayerController : InputBase
     PlayerState _state = PlayerState.Normal;
     // 水平方向の入力値
     float _h;
+    float _scaleX;
+    bool _lookingRight = true;
     // ジャンプの入力値
-    float _j;
+    float _jumpCount;
     bool _isGrounded = false;
     float _axis = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +58,12 @@ public class PlayerController : InputBase
 
         _axis = _inputController.Player.Move.ReadValue<float>();//入力方向をfloat型で取得
 
+        // 設定に応じて左右を反転させる
+        if (_flipX)
+        {
+            FlipX(_h);
+        }
+
         // 状態異常
         if (_state == PlayerState.Burning)
         {
@@ -78,26 +87,62 @@ public class PlayerController : InputBase
         _rb.AddForce(Vector2.right * _h * _moveSpeed, ForceMode2D.Force);   
     }
 
+    void FlipX(float horizontal)
+    {
+        /*
+         * 左を入力されたらキャラクターを左に向ける。
+         * 左右を反転させるには、Transform:Scale:X に -1 を掛ける。
+         * Sprite Renderer の Flip:X を操作しても反転する。
+         * */
+        _scaleX = this.transform.localScale.x;
+
+        if (horizontal > 0)
+        {
+            this.transform.localScale = new Vector3(Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+            _lookingRight = true;
+        }
+        else if (horizontal < 0)
+        {
+            this.transform.localScale = new Vector3(-1 * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+            _lookingRight = false;
+        }
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Bullet")
-        {
-            _isGrounded = true;
-        }
+        _isGrounded = true;
+
+        //if (collision.gameObject.tag != "Bullet")
+        //{
+        //    _isGrounded = true;
+        //}
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        _isGrounded = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Bullet")
-        {
-            _isGrounded = false;
-        }
+        _isGrounded = false;
+
+        //if (collision.gameObject.tag != "Bullet")
+        //{
+        //    _isGrounded = false;
+        //}
     }
 
     public float PlayerHp
     {
         get { return _hp; }
         set { _hp = value; }
+    }
+
+    public bool LookingRight()
+    {
+        return _lookingRight;
     }
 
     public enum PlayerState

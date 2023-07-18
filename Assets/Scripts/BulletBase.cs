@@ -16,7 +16,15 @@ public abstract class BulletBase : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _rb.velocity = transform.right * _bulletSpeed;
+
+        if (GetComponent<PlayerController>().LookingRight())
+        {
+            _rb.velocity = Vector2.right * _bulletSpeed;
+        }
+        else
+        {
+            _rb.velocity = -Vector2.right * _bulletSpeed;
+        }
     }
 
     // Update is called once per frame

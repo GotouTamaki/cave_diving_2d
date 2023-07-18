@@ -121,9 +121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 5
-  _lifeTime: 1
+  _lifeTime: 0.5
   _damage: 1
-  _interval: 0
+  _interval: 0.05
 --- !u!58 &5668734215979879553
 CircleCollider2D:
   m_ObjectHideFlags: 0
