@@ -79,6 +79,8 @@ public class PlayerController : InputBase
             _state = PlayerState.Normal;
             _sprite.color = Color.white;
         }
+
+        //Debug.Log(_lookingRight);
     }
 
     private void FixedUpdate()

@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba0222b7eeec3b479994d7dc5200f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 7023270440511371327, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
   _bulletSpeed: 5
   _lifeTime: 0.5
   _damage: 1

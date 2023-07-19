@@ -5,25 +5,32 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class BulletBase : MonoBehaviour
 {
+    [SerializeField] GameObject _player = null;
     [SerializeField] float _bulletSpeed = 1f;
     [SerializeField] float _lifeTime = 10f;
     [SerializeField] float _damage = 1f;
-    public float _interval = 1f;
+    [SerializeField] float _interval = 1f;
 
     Rigidbody2D _rb;
+    bool looking = false;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        //_rb.velocity = transform.right * _bulletSpeed;
+        bool player = _player.GetComponent<PlayerController>().LookingRight();
+        Debug.Log(player);
 
-        if (GetComponent<PlayerController>().LookingRight())
+        if (player)
         {
-            _rb.velocity = Vector2.right * _bulletSpeed;
+            _rb.velocity = transform.right * _bulletSpeed;
+            //Debug.Log(player);
         }
         else
         {
-            _rb.velocity = -Vector2.right * _bulletSpeed;
+            _rb.velocity = -transform.right * -_bulletSpeed;
+            //Debug.Log(player);
         }
     }
 
