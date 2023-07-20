@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : InputBase
@@ -24,6 +25,7 @@ public class PlayerController : InputBase
    
     Rigidbody2D _rb = default;
     SpriteRenderer _sprite = default;
+    BulletBase _bulletBase;
     PlayerState _state = PlayerState.Normal;
     // …•½•ûŒü‚Ì“ü—Í’l
     float _h;
@@ -45,9 +47,10 @@ public class PlayerController : InputBase
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(LookingRight);
 
-            _h = _inputController.Player.Move.ReadValue<float>();
-            //Debug.Log("ˆÚ“®ˆ—");
+        _h = _inputController.Player.Move.ReadValue<float>();
+        //Debug.Log("ˆÚ“®ˆ—");
 
         if (_inputController.Player.Jump.triggered && _isGrounded)//‰Ÿ‚µ‚½‚±‚Æ‚ğ”»’è
         {
@@ -78,9 +81,7 @@ public class PlayerController : InputBase
         {
             _state = PlayerState.Normal;
             _sprite.color = Color.white;
-        }
-
-        //Debug.Log(_lookingRight);
+        } 
     }
 
     private void FixedUpdate()
@@ -115,6 +116,11 @@ public class PlayerController : InputBase
     {
         _isGrounded = true;
 
+        if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered) 
+        {
+            collision.GetComponent<ItemBase>().Item();
+        }
+
         //if (collision.gameObject.tag != "Bullet")
         //{
         //    _isGrounded = true;
@@ -142,9 +148,10 @@ public class PlayerController : InputBase
         set { _hp = value; }
     }
 
-    public bool LookingRight()
+    public bool LookingRight
     {
-        return _lookingRight;
+        get { return _lookingRight; } 
+        set { _lookingRight = value; }
     }
 
     public enum PlayerState

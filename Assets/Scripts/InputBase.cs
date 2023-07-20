@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.XInput;
 
 public abstract class InputBase : MonoBehaviour
 {
-    //’Ç‰Á«
     public InputController _inputController;
     InputAction _action;    
 
@@ -25,8 +24,7 @@ public abstract class InputBase : MonoBehaviour
     private void OnEnable()
     {
         // InputAction‚ğ—LŒø‰»
-        // ‚±‚ê‚ğ‚µ‚È‚¢‚Æ“ü—Í‚ğó‚¯æ‚ê‚È‚¢‚±‚Æ‚É’ˆÓ
+        // ‚±‚ê‚ğ‚µ‚È‚¢‚Æ“ü—Í‚ğó‚¯æ‚ê‚È‚¢
         _action?.Enable();
     }
-    //‚±‚±‚Ü‚Å
 }

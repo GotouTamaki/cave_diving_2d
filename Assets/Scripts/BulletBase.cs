@@ -12,24 +12,24 @@ public abstract class BulletBase : MonoBehaviour
     [SerializeField] float _interval = 1f;
 
     Rigidbody2D _rb;
-    bool looking = false;
+    bool _looking = true;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         //_rb.velocity = transform.right * _bulletSpeed;
-        bool player = _player.GetComponent<PlayerController>().LookingRight();
+        bool player = _player.GetComponent<PlayerController>().LookingRight;
         Debug.Log(player);
 
-        if (player)
+        if (_looking)
         {
             _rb.velocity = transform.right * _bulletSpeed;
             //Debug.Log(player);
         }
         else
         {
-            _rb.velocity = -transform.right * -_bulletSpeed;
+            _rb.velocity = -transform.right * _bulletSpeed;
             //Debug.Log(player);
         }
     }
@@ -68,5 +68,11 @@ public abstract class BulletBase : MonoBehaviour
     public float Interval()
     {
         return _interval;
+    }
+
+    public bool Looking(bool looking)
+    {
+        _looking = looking;
+        return _looking;
     }
 }
