@@ -13,8 +13,6 @@ public class PlayerController : InputBase
     [SerializeField] float _moveSpeed = 5f;
     // ジャンプする力
     [SerializeField] float _jumpPower = 15f;
-    // 入力に応じて左右を反転させるかどうかのフラグ
-    [SerializeField] bool _flipX = false;
     /// <summary>燃焼状態の時にどれくらいライフが減るか</summary>
     [SerializeField] float _lifeReduceSpeedOnBurning = 1;
     /// <summary>速度低下の時にどれくらい移動速度が落ちるか</summary>
@@ -50,7 +48,7 @@ public class PlayerController : InputBase
         //Debug.Log(LookingRight);
 
         _h = _inputController.Player.Move.ReadValue<float>();
-        //Debug.Log("移動処理");
+        //Debug.Log(_inputController.Player.Move.ReadValue<float>());
 
         if (_inputController.Player.Jump.triggered && _isGrounded)//押したことを判定
         {
@@ -62,10 +60,9 @@ public class PlayerController : InputBase
         _axis = _inputController.Player.Move.ReadValue<float>();//入力方向をfloat型で取得
 
         // 設定に応じて左右を反転させる
-        if (_flipX)
-        {
-            FlipX(_h);
-        }
+    
+        FlipX(_h);
+        
 
         // 状態異常
         if (_state == PlayerState.Burning)

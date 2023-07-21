@@ -14,12 +14,12 @@ public class ItemBase : MonoBehaviour
     //　アイテム数管理
     //private Dictionary<Item, int> _numOfItem = new Dictionary<Item, int>();
 
-    public void AddItemData(Item item)
-    {
-        _itemDateBase.GetItemLists().Add(item);
-    }
+    //public void AddItemData(Item item)
+    //{
+    //    _itemDateBase.GetItemLists().Add(item);
+    //}
 
-    // Use this for initialization
+    // Start is called before the first frame update
     void Start()
     {
         

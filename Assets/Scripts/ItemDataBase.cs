@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-[CreateAssetMenu(fileName = "ItemIndex", menuName = "CreateItemIndex")]
+[CreateAssetMenu(fileName = "ItemDataBase", menuName = "CreateItemDataBase")]
 public class ItemDataBase : ScriptableObject
 {
-    [SerializeField]
-    private List<Item> _itemLists = new List<Item>();
+    [SerializeField] List<Item> _itemLists = new List<Item>();
 
     //　アイテムリストを返す
     public List<Item> GetItemLists()

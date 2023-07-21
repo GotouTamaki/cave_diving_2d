@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _kindOfItem: 1
   _icon: {fileID: 21300000, guid: da8b954cb135b4d4aa3e24b9c1cdaf87, type: 3}
-  _itemName: "\u30DD\u30A4\u30F3\u30C8"
+  _itemName: "\u30DD\u30A4\u30F3\u30C8\u30A2\u30A4\u30C6\u30E0"
   _information: "1\u30DD\u30A4\u30F3\u30C8\u624B\u306B\u5165\u308C\u305F\uFF01"

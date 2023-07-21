@@ -5,24 +5,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class BulletBase : MonoBehaviour
 {
-    [SerializeField] GameObject _player = null;
     [SerializeField] float _bulletSpeed = 1f;
     [SerializeField] float _lifeTime = 10f;
     [SerializeField] float _damage = 1f;
     [SerializeField] float _interval = 1f;
-
-    Rigidbody2D _rb;
-    bool _looking = true;
+    
+    GameObject _player = null;
+    Rigidbody2D _rb = null;
 
     // Start is called before the first frame update
     void Start()
     {
+        _player = GameObject.Find("Player");
         _rb = GetComponent<Rigidbody2D>();
         //_rb.velocity = transform.right * _bulletSpeed;
         bool player = _player.GetComponent<PlayerController>().LookingRight;
-        Debug.Log(player);
+        //Debug.Log(player);
 
-        if (_looking)
+        if (player)
         {
             _rb.velocity = transform.right * _bulletSpeed;
             //Debug.Log(player);
@@ -68,11 +68,5 @@ public abstract class BulletBase : MonoBehaviour
     public float Interval()
     {
         return _interval;
-    }
-
-    public bool Looking(bool looking)
-    {
-        _looking = looking;
-        return _looking;
     }
 }

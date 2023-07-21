@@ -8,8 +8,7 @@ public class CannonRightController : InputBase
     [SerializeField] Transform _muzzle = null;
     [SerializeField] List<GameObject> _bullet = new List<GameObject>();
     [SerializeField] int _bulletType = 0;
-    [SerializeField] float _posiRotationLimit = 90f;
-    [SerializeField] float _negaRotationLimit = 0f;
+    [SerializeField] float _rotationLimit = 90f;
 
     float _interval = 1f;
     float _timer;
@@ -51,18 +50,18 @@ public class CannonRightController : InputBase
         }
 
         _r = _inputController.Player.PointCannonStick.ReadValue<Vector2>();
-        Debug.Log(_r);
+        //Debug.Log(_r);
     }
 
     private void FixedUpdate()
     {
         if (_r.x + _r.y > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * _posiRotationLimit);
+            transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * _rotationLimit);
         }
-        else if (_r.x + _r.y < 0)
+        else if (_r.x + _r.y < 0 && _r.x + _r.y <= -1f)
         {
-            transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * _posiRotationLimit) ;
+            transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * -_rotationLimit) ;
         }
     }
 }
