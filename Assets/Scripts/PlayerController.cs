@@ -113,10 +113,10 @@ public class PlayerController : InputBase
     {
         _isGrounded = true;
 
-        if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered) 
-        {
-            collision.GetComponent<ItemBase>().Item();
-        }
+        //if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered) 
+        //{
+        //    collision.GetComponent<ItemBase>().Item();
+        //}
 
         //if (collision.gameObject.tag != "Bullet")
         //{
@@ -127,6 +127,11 @@ public class PlayerController : InputBase
     private void OnTriggerStay2D(Collider2D collision)
     {
         _isGrounded = true;
+
+        if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
+        {
+            collision.GetComponent<ItemBase>().Item();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
