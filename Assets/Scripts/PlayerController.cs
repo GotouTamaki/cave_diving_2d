@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class PlayerController : InputBase
 {
     [SerializeField] float _maxHp = 1;
@@ -18,19 +20,17 @@ public class PlayerController : InputBase
     /// <summary>速度低下の時にどれくらい移動速度が落ちるか</summary>
     [SerializeField] float _speedReductionRatioOnSlow = 0.5f;
 
-
     // 各種初期化
-   
     Rigidbody2D _rb = default;
     SpriteRenderer _sprite = default;
-    BulletBase _bulletBase;
+    BulletBase _bulletBase = default;
     PlayerState _state = PlayerState.Normal;
     // 水平方向の入力値
-    float _h;
-    float _scaleX;
+    float _h = 0;
+    float _scaleX = 0;
     bool _lookingRight = true;
     // ジャンプの入力値
-    float _jumpCount;
+    float _jumpCount = 0;
     bool _isGrounded = false;
     float _axis = 0;
 
@@ -59,11 +59,9 @@ public class PlayerController : InputBase
 
         _axis = _inputController.Player.Move.ReadValue<float>();//入力方向をfloat型で取得
 
-        // 設定に応じて左右を反転させる
-    
+        // 設定に応じて左右を反転させる   
         FlipX(_h);
         
-
         // 状態異常
         if (_state == PlayerState.Burning)
         {
@@ -113,7 +111,7 @@ public class PlayerController : InputBase
     {
         _isGrounded = true;
 
-        //if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered) 
+        //if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
         //{
         //    collision.GetComponent<ItemBase>().Item();
         //}
@@ -124,13 +122,13 @@ public class PlayerController : InputBase
         //}
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D other)
     {
         _isGrounded = true;
 
-        if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
+        if (other.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
         {
-            collision.GetComponent<ItemBase>().Item();
+            other.GetComponent<ItemBase>().Item();
         }
     }
 

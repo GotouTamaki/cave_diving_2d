@@ -9,7 +9,7 @@ using static UnityEditor.Progress;
 public class ItemBase : MonoBehaviour
 {
     //　アイテムデータベース
-    [SerializeField] ItemDataBase _itemDateBase;
+    [SerializeField] ItemDataBase _itemDateBase = default;
     [SerializeField] int _itemNum = 0;
     //　アイテム数管理
     //private Dictionary<Item, int> _numOfItem = new Dictionary<Item, int>();
@@ -25,11 +25,13 @@ public class ItemBase : MonoBehaviour
         
     }
 
+    //アイテムの取得の処理
     public void Item()
     {      
         Item item = ScriptableObject.CreateInstance("Item") as Item;
         item = _itemDateBase.GetItemLists()[_itemNum];
-        Debug.Log(item.GetItemName() + " " + item.GetInformation());      
+        Debug.Log(item.GetItemName() + " " + item.GetInformation());
+        Destroy(this.gameObject);
     }
 }
 

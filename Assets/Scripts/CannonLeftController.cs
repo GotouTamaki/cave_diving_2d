@@ -5,13 +5,18 @@ using UnityEngine.InputSystem.XInput;
 
 public class CannonLeftController : InputBase
 {
-    [SerializeField] Transform _muzzle = null;
+    /// <summary>ƒ}ƒYƒ‹‚ÌˆÊ’u</summary>
+    [SerializeField] Transform _muzzle = default;
+    /// <summary>’e‚Ìí—Ş</summary>
     [SerializeField] List<GameObject> _bullet = new List<GameObject>();
+    /// <summary>’e‚Ìí—Ş‚Ì”Ô†</summary>
     [SerializeField] int _bulletType = 0;
+    /// <summary>‘å–C‚ÌŠp“x§ŒÀ</summary>s
     [SerializeField] float _rotationLimit = 90f;
 
+    // Šeí‰Šú‰»
     float _interval = 1f;
-    float _timer;
+    float _timer = 0;
     Vector2 _r = Vector2.zero;
 
     // Start is called before the first frame update
@@ -26,6 +31,7 @@ public class CannonLeftController : InputBase
     {
         _timer += Time.deltaTime;
 
+        // ’e‚Ì”­Ë
         if (_timer > _interval)
         {
             if (_inputController.Player.FireLeft.IsPressed())//‰Ÿ‚µ‚½‚±‚Æ‚ğ”»’è
@@ -37,6 +43,7 @@ public class CannonLeftController : InputBase
             }
         }
 
+        // ’e‚ÌØ‚è‘Ö‚¦
         if (_inputController.Player.BulletChangeL.triggered)//‰Ÿ‚µ‚½‚±‚Æ‚ğ”»’è
         {
             ++_bulletType;
@@ -45,15 +52,14 @@ public class CannonLeftController : InputBase
             {
                 _bulletType = 0;
             }
+
             Debug.Log(_bulletType);
         }
 
         _r = _inputController.Player.PointCannonStick.ReadValue<Vector2>();
         //Debug.Log(_r);
-    }
 
-    private void FixedUpdate()
-    {
+        // ‘å–C‚ÌŠp“x•ÏX
         if (_r.x + _r.y > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * _rotationLimit);

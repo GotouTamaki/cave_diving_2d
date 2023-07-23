@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
-public abstract class BulletBase : MonoBehaviour
+public abstract class EnemyBulletBase : MonoBehaviour
 {
     /// <summary>弾のスピード</summary>
     [SerializeField] float _bulletSpeed = 1f;
@@ -22,23 +22,8 @@ public abstract class BulletBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindWithTag("Player");
         _rb = GetComponent<Rigidbody2D>();
-        //_rb.velocity = transform.right * _bulletSpeed;
-        bool player = _player.GetComponent<PlayerController>().LookingRight;
-        //Debug.Log(player);
-
-        // プレイヤーの方向を取得
-        if (player)
-        {
-            _rb.velocity = transform.right * _bulletSpeed;
-            //Debug.Log(player);
-        }
-        else
-        {
-            _rb.velocity = -transform.right * _bulletSpeed;
-            //Debug.Log(player);
-        }
+        _rb.velocity = transform.right * _bulletSpeed;
     }
 
     // Update is called once per frame
@@ -52,25 +37,18 @@ public abstract class BulletBase : MonoBehaviour
         }
     }
 
-    protected void FixedUpdate()
-    {
-        //_rb.velocity = Vector2.right * _bulletSpeed;
-        //_rb.AddForce(Vector2.right * _bulletSpeed, ForceMode2D.Impulse);
-    }
-
-    public abstract void BulletEnemyHit(EnemyBase enemyBase);
-    //public abstract void BulletMove();
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Player")
         {
-            BulletEnemyHit(other.GetComponent<EnemyBase>());
+            BulletPlayerHit(other.GetComponent<PlayerController>());
             // ダメージを与える処理
-            other.GetComponent<EnemyBase>().EnemyHp -= _damage;
+            other.GetComponent<PlayerController>().PlayerHp -= _damage;
             Destroy(this.gameObject);
         }
     }
+
+    public abstract void BulletPlayerHit(PlayerController playerController);
 
     public float Interval()
     {

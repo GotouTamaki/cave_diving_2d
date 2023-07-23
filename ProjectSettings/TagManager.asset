@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Enemy
   - Item
+  - EnemyBullet
+  - EnemyCannon
   layers:
   - Default
   - TransparentFX

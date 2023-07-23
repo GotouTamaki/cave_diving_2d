@@ -15,8 +15,9 @@ public class EnemyBase : MonoBehaviour
     /// <summary>‘¬“x’á‰º‚Ì‚É‚Ç‚ê‚­‚ç‚¢ˆÚ“®‘¬“x‚ª—‚¿‚é‚©</summary>
     [SerializeField] float _speedReductionRatioOnSlow = 0.5f;
 
-    Rigidbody2D _rb;
-    SpriteRenderer _sprite;
+    // Šeí‰Šú‰»
+    Rigidbody2D _rb = default;
+    SpriteRenderer _sprite = default;
     EnemyState _state = EnemyState.Normal;
 
     // Start is called before the first frame update
@@ -31,7 +32,7 @@ public class EnemyBase : MonoBehaviour
     void Update()
     {
         // ¶€”»’è
-        if (_enemyHp < 0)
+        if (_enemyHp <= 0)
         {
             _state = EnemyState.Dead;
         }
