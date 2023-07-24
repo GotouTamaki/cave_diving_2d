@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static EnemyBase;
 using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -33,6 +34,7 @@ public class PlayerController : InputBase
     float _jumpCount = 0;
     bool _isGrounded = false;
     float _axis = 0;
+    float _stateTime = 0;
 
 
     // Start is called before the first frame update
@@ -50,7 +52,21 @@ public class PlayerController : InputBase
         _h = _inputController.Player.Move.ReadValue<float>();
         //Debug.Log(_inputController.Player.Move.ReadValue<float>());
 
-        if (_inputController.Player.Jump.triggered && _isGrounded)//押したことを判定
+        _stateTime -= Time.deltaTime;
+
+        if (_stateTime < 0) 
+        {
+            //_state = PlayerState.Normal;
+            //_stateTime = 0;
+        }
+
+        if (_inputController.Player.Jump.triggered && _state == PlayerState.Slow && _isGrounded)//押したことを判定
+        {
+            // ジャンプの力を加える
+            _rb.AddForce(Vector2.up * _jumpPower * _speedReductionRatioOnSlow, ForceMode2D.Impulse);
+            //Debug.Log("ジャンプ処理");
+        }
+        else if (_inputController.Player.Jump.triggered && _state == PlayerState.Normal && _isGrounded)//押したことを判定
         {
             // ジャンプの力を加える
             _rb.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
@@ -66,10 +82,10 @@ public class PlayerController : InputBase
         if (_state == PlayerState.Burning)
         {
             _hp -= _lifeReduceSpeedOnBurning * Time.deltaTime;
+            _sprite.color = Color.red;
         }
         else if (_state == PlayerState.Slow)
         {
-            //_rb.velocity = dir * _moveSpeed * _speedReductionRatioOnSlow;
             _sprite.color = Color.yellow;
         }
         else
@@ -82,7 +98,15 @@ public class PlayerController : InputBase
     private void FixedUpdate()
     {
         // 横移動の力を加えるのは FixedUpdate で行う
-        _rb.AddForce(Vector2.right * _h * _moveSpeed, ForceMode2D.Force);   
+        if (_state == PlayerState.Slow) 
+        {
+            _rb.AddForce(Vector2.right * _h * _moveSpeed * _speedReductionRatioOnSlow, ForceMode2D.Force);
+        }
+        else if (_state == PlayerState.Normal)
+        {
+            _rb.AddForce(Vector2.right * _h * _moveSpeed, ForceMode2D.Force);
+        }
+        
     }
 
     void FlipX(float horizontal)
@@ -111,14 +135,16 @@ public class PlayerController : InputBase
     {
         _isGrounded = true;
 
+        if (collision.gameObject.tag == "Bullet")
+        {
+            EnemyBulletBase enemyBulletBase = collision.GetComponent<EnemyBulletBase>();
+            _stateTime = enemyBulletBase.ChangeStateTime();
+            Debug.Log(_stateTime);
+        }
+
         //if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
         //{
         //    collision.GetComponent<ItemBase>().Item();
-        //}
-
-        //if (collision.gameObject.tag != "Bullet")
-        //{
-        //    _isGrounded = true;
         //}
     }
 
@@ -159,5 +185,10 @@ public class PlayerController : InputBase
         Normal,
         Burning,
         Slow,
+    }
+
+    public PlayerState State
+    {
+        set { _state = value; }
     }
 }

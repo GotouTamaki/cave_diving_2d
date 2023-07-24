@@ -466,14 +466,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 160859153, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
-      propertyPath: _cannonUser
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 160859153, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
-      propertyPath: _bullet.Array.data[0]
-      value: 
-      objectReference: {fileID: 699091085041576368, guid: 9154d11a63ef7d342b1e24701363e0fa, type: 3}
     - target: {fileID: 7023270440511371321, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -934,6 +926,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9074770116560307203, guid: 1af853c8db2e3cf4dbfcf05efa8afb8d, type: 3}
+      propertyPath: _bullet
+      value: 
+      objectReference: {fileID: 1126343481050957905, guid: e4c67a23c9c38c24c836a6ed1dd81817, type: 3}
     - target: {fileID: 9074770116560307260, guid: 1af853c8db2e3cf4dbfcf05efa8afb8d, type: 3}
       propertyPath: m_Name
       value: EnemyCannon
