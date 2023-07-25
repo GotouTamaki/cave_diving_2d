@@ -15,7 +15,7 @@ public abstract class EnemyBulletBase : MonoBehaviour
     /// <summary>弾のインターバル</summary>
     [SerializeField] float _interval = 1f;
     /// <summary>状態異常の維持時間</summary>
-    [SerializeField] float _changeStateTime = 1f;
+    [SerializeField] protected float _changeStateTime = 1f;
 
     // 各種初期化
     GameObject _player = default;
@@ -55,10 +55,5 @@ public abstract class EnemyBulletBase : MonoBehaviour
     public float Interval()
     {
         return _interval;
-    }
-
-    public float ChangeStateTime()
-    {
-        return _changeStateTime;
-    }
+    }   
 }

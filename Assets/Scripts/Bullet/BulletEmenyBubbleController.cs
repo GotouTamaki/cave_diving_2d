@@ -7,5 +7,6 @@ public class BulletEmenyBubbleController : EnemyBulletBase
     public override void BulletPlayerHit(PlayerController playerController)
     {
         playerController.State = PlayerController.PlayerState.Slow;
+        playerController.StateTime = _changeStateTime;
     }
 }

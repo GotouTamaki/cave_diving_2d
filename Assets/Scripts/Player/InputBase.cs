@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XInput;
 
+/// <summary>InputSystemの入力を受け取れるようにするスクリプト</summary>
 public abstract class InputBase : MonoBehaviour
-{
+{    
     public InputController _inputController;
     InputAction _action;    
 

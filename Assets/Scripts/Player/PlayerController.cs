@@ -26,6 +26,7 @@ public class PlayerController : InputBase
     SpriteRenderer _sprite = default;
     BulletBase _bulletBase = default;
     PlayerState _state = PlayerState.Normal;
+    float _stateTime = 0;
     // …•½•ûŒü‚Ì“ü—Í’l
     float _h = 0;
     float _scaleX = 0;
@@ -34,8 +35,6 @@ public class PlayerController : InputBase
     float _jumpCount = 0;
     bool _isGrounded = false;
     float _axis = 0;
-    float _stateTime = 0;
-
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +46,6 @@ public class PlayerController : InputBase
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(LookingRight);
-
         _h = _inputController.Player.Move.ReadValue<float>();
         //Debug.Log(_inputController.Player.Move.ReadValue<float>());
 
@@ -56,8 +53,9 @@ public class PlayerController : InputBase
 
         if (_stateTime < 0) 
         {
-            //_state = PlayerState.Normal;
-            //_stateTime = 0;
+            _state = PlayerState.Normal;
+            _stateTime = 0;
+            //Debug.Log("ƒm[ƒ}ƒ‹I");
         }
 
         if (_inputController.Player.Jump.triggered && _state == PlayerState.Slow && _isGrounded)//‰Ÿ‚µ‚½‚±‚Æ‚ğ”»’è
@@ -75,7 +73,7 @@ public class PlayerController : InputBase
 
         _axis = _inputController.Player.Move.ReadValue<float>();//“ü—Í•ûŒü‚ğfloatŒ^‚Åæ“¾
 
-        // İ’è‚É‰‚¶‚Ä¶‰E‚ğ”½“]‚³‚¹‚é   
+        // “ü—Í‚É‰‚¶‚Ä¶‰E‚ğ”½“]‚³‚¹‚é   
         FlipX(_h);
         
         // ó‘ÔˆÙí
@@ -86,7 +84,7 @@ public class PlayerController : InputBase
         }
         else if (_state == PlayerState.Slow)
         {
-            _sprite.color = Color.yellow;
+            _sprite.color = Color.cyan;
         }
         else
         {
@@ -135,13 +133,6 @@ public class PlayerController : InputBase
     {
         _isGrounded = true;
 
-        if (collision.gameObject.tag == "Bullet")
-        {
-            EnemyBulletBase enemyBulletBase = collision.GetComponent<EnemyBulletBase>();
-            _stateTime = enemyBulletBase.ChangeStateTime();
-            Debug.Log(_stateTime);
-        }
-
         //if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
         //{
         //    collision.GetComponent<ItemBase>().Item();
@@ -161,11 +152,6 @@ public class PlayerController : InputBase
     private void OnTriggerExit2D(Collider2D collision)
     {
         _isGrounded = false;
-
-        //if (collision.gameObject.tag != "Bullet")
-        //{
-        //    _isGrounded = false;
-        //}
     }
 
     public float PlayerHp
@@ -190,5 +176,11 @@ public class PlayerController : InputBase
     public PlayerState State
     {
         set { _state = value; }
+    }
+
+    public float StateTime
+    {
+        get { return _stateTime; }
+        set { _stateTime = value; }
     }
 }
