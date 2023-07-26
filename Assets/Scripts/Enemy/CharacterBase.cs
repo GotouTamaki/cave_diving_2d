@@ -5,7 +5,6 @@ using static PlayerController;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
-[RequireComponent(typeof(CircleCollider2D))]
 public class CharacterBase : MonoBehaviour
 {
     [SerializeField] float _maxHp = 1;
@@ -31,6 +30,20 @@ public class CharacterBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // èÛë‘àŸèÌ
+        if (_state == PlayerState.Burning)
+        {
+            _hp -= _lifeReduceSpeedOnBurning * Time.deltaTime;
+            _sprite.color = Color.red;
+        }
+        else if (_state == PlayerState.Slow)
+        {
+            _sprite.color = Color.cyan;
+        }
+        else
+        {
+            _state = PlayerState.Normal;
+            _sprite.color = Color.white;
+        }
     }
 }

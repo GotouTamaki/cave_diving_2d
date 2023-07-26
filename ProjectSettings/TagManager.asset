@@ -10,6 +10,7 @@ TagManager:
   - Item
   - EnemyBullet
   - EnemyCannon
+  - GroundChecker
   layers:
   - Default
   - TransparentFX
@@ -17,13 +18,13 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Bullet
+  - Enemy
+  - Item
+  - EnemyBullet
+  - Ground
+  - GroundChecker
   - 
   - 
   - 

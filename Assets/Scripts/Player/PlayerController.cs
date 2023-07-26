@@ -7,7 +7,6 @@ using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
-[RequireComponent(typeof(CircleCollider2D))]
 public class PlayerController : InputBase
 {
     [SerializeField] float _maxHp = 1;
@@ -118,12 +117,12 @@ public class PlayerController : InputBase
 
         if (horizontal > 0)
         {
-            this.transform.localScale = new Vector3(Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+            _sprite.flipX = false;
             _lookingRight = true;
         }
         else if (horizontal < 0)
         {
-            this.transform.localScale = new Vector3(-1 * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+            _sprite.flipX = true;
             _lookingRight = false;
         }
 
@@ -131,17 +130,14 @@ public class PlayerController : InputBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _isGrounded = true;
-
-        //if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
-        //{
-        //    collision.GetComponent<ItemBase>().Item();
-        //}
+        if (collision.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
+        {
+            collision.GetComponent<ItemBase>().Item();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        _isGrounded = true;
 
         if (other.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
         {
@@ -164,6 +160,12 @@ public class PlayerController : InputBase
     {
         get { return _lookingRight; } 
         set { _lookingRight = value; }
+    }
+
+    public bool IsGrounded
+    {
+        get { return _isGrounded; }
+        set { _isGrounded = value; }
     }
 
     public enum PlayerState
