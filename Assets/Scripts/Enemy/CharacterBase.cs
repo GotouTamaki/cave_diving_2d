@@ -20,30 +20,57 @@ public class CharacterBase : MonoBehaviour
 
     Rigidbody2D _rb = default;
     SpriteRenderer _sprite = default;
-    PlayerState _state = PlayerState.Normal;
+    CharacterState _state = CharacterState.Normal;
+    float _stateTime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _rb = GetComponent<Rigidbody2D>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // èÛë‘àŸèÌ
-        if (_state == PlayerState.Burning)
+        if (_state == CharacterState.Burning)
         {
             _hp -= _lifeReduceSpeedOnBurning * Time.deltaTime;
             _sprite.color = Color.red;
         }
-        else if (_state == PlayerState.Slow)
+        else if (_state == CharacterState.Slow)
         {
             _sprite.color = Color.cyan;
         }
         else
         {
-            _state = PlayerState.Normal;
+            _state = CharacterState.Normal;
             _sprite.color = Color.white;
         }
+    }
+
+    public float CharacterHp
+    {
+        get { return _hp; }
+        set { _hp = value; }
+    }
+
+    public enum CharacterState
+    {
+        Normal,
+        Burning,
+        Slow,
+    }
+
+    public CharacterState State
+    {
+        set { _state = value; }
+    }
+
+    public float StateTime
+    {
+        get { return _stateTime; }
+        set { _stateTime = value; }
     }
 }
