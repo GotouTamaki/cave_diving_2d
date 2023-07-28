@@ -5,8 +5,8 @@ using UnityEngine.Playables;
 
 public class BulletFlameController : BulletBase
 {
-    public override void BulletEnemyHit(EnemyBase enemyBase)
+    public override void BulletEnemyHit(CharacterBase characterBase)
     {
-        enemyBase.State = EnemyBase.EnemyState.Burning;
+        characterBase.State = CharacterBase.CharacterState.Burning;
     }
 }

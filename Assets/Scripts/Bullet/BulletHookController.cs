@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletHookController : BulletBase
 {
-    public override void BulletEnemyHit(EnemyBase enemyBase)
+    public override void BulletEnemyHit(CharacterBase characterBase)
     {
 
     }

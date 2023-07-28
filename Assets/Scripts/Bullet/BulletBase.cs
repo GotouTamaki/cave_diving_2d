@@ -60,16 +60,16 @@ public abstract class BulletBase : MonoBehaviour
         //_rb.AddForce(Vector2.right * _bulletSpeed, ForceMode2D.Impulse);
     }
 
-    public abstract void BulletEnemyHit(EnemyBase enemyBase);
+    public abstract void BulletEnemyHit(CharacterBase characterBase);
     //public abstract void BulletMove();
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            BulletEnemyHit(other.GetComponent<EnemyBase>());
+            BulletEnemyHit(other.GetComponent<CharacterBase>());
             // É_ÉÅÅ[ÉWÇó^Ç¶ÇÈèàóù
-            other.GetComponent<EnemyBase>().EnemyHp -= _damage;
+            other.GetComponent<CharacterBase>().CharacterHp -= _damage;
             Destroy(this.gameObject);
         }
     }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BulletBubbleController : BulletBase
 {
-    public override void BulletEnemyHit(EnemyBase enemyBase)
+    public override void BulletEnemyHit(CharacterBase characterBase)
     {
-        enemyBase.State = EnemyBase.EnemyState.Slow;
+        characterBase.State = CharacterBase.CharacterState.Slow;
     }
 }

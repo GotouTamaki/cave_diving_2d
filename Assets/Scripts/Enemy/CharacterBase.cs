@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnemyBase;
 using static PlayerController;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -33,6 +34,12 @@ public class CharacterBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 生死判定
+        if (_hp <= 0)
+        {
+            _state = CharacterState.Dead;
+        }
+
         // 状態異常
         if (_state == CharacterState.Burning)
         {
@@ -42,6 +49,15 @@ public class CharacterBase : MonoBehaviour
         else if (_state == CharacterState.Slow)
         {
             _sprite.color = Color.cyan;
+        }
+        else if (_state == CharacterState.Dead)
+        {
+            Debug.Log("やられた！");
+            //if (倒されたとき用のプレハブ)
+            //{
+            //    Instantiate(倒されたとき用のプレハブ, this.transform.position, 倒されたとき用のプレハブ.transform.rotation);
+            //}
+            Destroy(this.gameObject);
         }
         else
         {
@@ -61,6 +77,7 @@ public class CharacterBase : MonoBehaviour
         Normal,
         Burning,
         Slow,
+        Dead,
     }
 
     public CharacterState State
