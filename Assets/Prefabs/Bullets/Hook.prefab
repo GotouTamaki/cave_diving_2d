@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6323642433291169009}
   - component: {fileID: 6323642433291169022}
   - component: {fileID: 6323642433291169008}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hook
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -120,11 +120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c9434464a67dd4880be3edd4cad6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7023270440511371327, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
   _bulletSpeed: 5
   _lifeTime: 10
   _damage: 1
   _interval: 0.01
+  _changeStateTime: 1
 --- !u!58 &6323642433291169008
 CircleCollider2D:
   m_ObjectHideFlags: 0

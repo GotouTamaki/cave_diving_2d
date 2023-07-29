@@ -19,12 +19,12 @@ TagManager:
   - Water
   - UI
   - Player
-  - Bullet
+  - Ground
   - Enemy
   - Item
-  - EnemyBullet
-  - Ground
   - GroundChecker
+  - Bullet
+  - EnemyBullet
   - 
   - 
   - 

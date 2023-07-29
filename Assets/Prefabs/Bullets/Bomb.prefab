@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7553248297886791937}
   - component: {fileID: 7553248297886791939}
   - component: {fileID: 7202993050863307398}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bomb
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -121,11 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c359c4fa1728efd4d9fb4ba36f6bdd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7023270440511371327, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
   _bulletSpeed: 10
   _lifeTime: 10
   _damage: 1
   _interval: 1
+  _changeStateTime: 1
 --- !u!58 &7553248297886791939
 CircleCollider2D:
   m_ObjectHideFlags: 0

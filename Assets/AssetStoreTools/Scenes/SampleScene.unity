@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 409341286}
   - component: {fileID: 409341287}
   - component: {fileID: 409341288}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundChecker
   m_TagString: GroundChecker
   m_Icon: {fileID: 0}
@@ -527,6 +527,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 160859149, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125802678, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7023270439695144788, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7023270440511371321, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -574,6 +586,14 @@ PrefabInstance:
     - target: {fileID: 7023270440511371327, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7023270440511371327, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7023270440782822135, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
@@ -1008,6 +1028,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5789641513317204544, guid: 9df4443f41029f649a6a7011d5e3bdb3, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5789641513317204550, guid: 9df4443f41029f649a6a7011d5e3bdb3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1064,6 +1088,10 @@ PrefabInstance:
     - target: {fileID: 5789641513317204544, guid: 9df4443f41029f649a6a7011d5e3bdb3, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5789641513317204544, guid: 9df4443f41029f649a6a7011d5e3bdb3, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5789641513317204550, guid: 9df4443f41029f649a6a7011d5e3bdb3, type: 3}
       propertyPath: m_RootOrder

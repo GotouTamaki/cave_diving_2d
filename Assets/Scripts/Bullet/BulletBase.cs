@@ -65,7 +65,7 @@ public abstract class BulletBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.GetComponent<CharacterBase>() != null)
         {
             BulletEnemyHit(other.GetComponent<CharacterBase>());
             // ƒ_ƒ[ƒW‚ğ—^‚¦‚éˆ—
