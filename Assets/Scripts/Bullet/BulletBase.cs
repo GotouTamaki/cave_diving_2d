@@ -24,23 +24,23 @@ public abstract class BulletBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindWithTag("Player");
+        //_player = GameObject.FindWithTag("Player");
         _rb = GetComponent<Rigidbody2D>();
         //_rb.velocity = transform.right * _bulletSpeed;
-        bool player = _player.GetComponent<PlayerController>().LookingRight;
+        //bool player = _player.GetComponent<PlayerController>().LookingRight;
         //Debug.Log(player);
 
         // ÉvÉåÉCÉÑÅ[ÇÃï˚å¸ÇéÊìæ
-        if (player)
-        {
-            _rb.velocity = transform.right * _bulletSpeed;
+        //if (player)
+        //{
+            _rb.velocity = transform.up * _bulletSpeed;
             //Debug.Log(player);
-        }
-        else
-        {
-            _rb.velocity = -transform.right * _bulletSpeed;
-            //Debug.Log(player);
-        }
+        //}
+        //else
+        //{
+        //    _rb.velocity = -transform.up * _bulletSpeed;
+        //    //Debug.Log(player);
+        //}
     }
 
     // Update is called once per frame

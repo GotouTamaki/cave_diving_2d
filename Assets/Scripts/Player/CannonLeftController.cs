@@ -7,6 +7,8 @@ public class CannonLeftController : InputBase
 {
     /// <summary>マズルの位置</summary>
     [SerializeField] Transform _muzzle = default;
+    /// <summary>ターゲットの位置</summary>
+    [SerializeField] GameObject _target = default;
     /// <summary>弾の種類</summary>
     [SerializeField] List<GameObject> _bullet = new List<GameObject>();
     /// <summary>弾の種類の番号</summary>
@@ -56,17 +58,23 @@ public class CannonLeftController : InputBase
             Debug.Log(_bulletType);
         }
 
-        _r = _inputController.Player.PointCannonStick.ReadValue<Vector2>();
+        // 大砲の角度変更
+        this.transform.up = _target.transform.position - this.transform.up;
+
+        //_r = _inputController.Player.PointCannonStick.ReadValue<Vector2>();
+        //// オブジェクトをベクトル方向に従って回転させる
+        //transform.rotation = Quaternion.LookRotation(_r);
         //Debug.Log(_r);
+        //transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * _rotationLimit);
 
         // 大砲の角度変更
-        if (_r.x + _r.y > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * _rotationLimit);
-        }
-        else if (_r.x + _r.y < 0 && _r.x + _r.y <= -1f)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * -_rotationLimit);
-        }
+        //if (_r.x + _r.y > 0)
+        //{
+        //transform.rotation = Quaternion.Euler(_r);
+        //}
+        //else if (_r.x + _r.y < 0 && _r.x + _r.y <= -1f)
+        //{
+        //    transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * -_rotationLimit);
+        //}
     }
 }
