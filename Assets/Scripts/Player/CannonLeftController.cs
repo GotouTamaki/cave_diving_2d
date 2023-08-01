@@ -14,7 +14,7 @@ public class CannonLeftController : InputBase
     /// <summary>弾の種類の番号</summary>
     [SerializeField] int _bulletType = 0;
     /// <summary>大砲の角度制限</summary>s
-    [SerializeField] float _rotationLimit = 90f;
+    //[SerializeField] float _rotationLimit = 90f;
 
     // 各種初期化
     float _interval = 1f;
@@ -33,13 +33,17 @@ public class CannonLeftController : InputBase
     {
         _timer += Time.deltaTime;
 
+        _r = _inputController.Player.PointCannonStick.ReadValue<Vector2>();
+        // 大砲の角度変更
+        this.transform.up = _target.transform.position - this.transform.position;
+
         // 弾の発射
         if (_timer > _interval)
         {
             if (_inputController.Player.FireLeft.IsPressed())//押したことを判定
             {
                 GameObject bullet = Instantiate(_bullet[_bulletType], _muzzle.position, this.transform.rotation);
-                Debug.Log($"右砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
+                Debug.Log($"左砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
                 _interval = bullet.GetComponent<BulletBase>().Interval();
                 _timer = 0f;
             }
@@ -56,25 +60,6 @@ public class CannonLeftController : InputBase
             }
 
             Debug.Log(_bulletType);
-        }
-
-        // 大砲の角度変更
-        this.transform.up = _target.transform.position - this.transform.up;
-
-        //_r = _inputController.Player.PointCannonStick.ReadValue<Vector2>();
-        //// オブジェクトをベクトル方向に従って回転させる
-        //transform.rotation = Quaternion.LookRotation(_r);
-        //Debug.Log(_r);
-        //transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * _rotationLimit);
-
-        // 大砲の角度変更
-        //if (_r.x + _r.y > 0)
-        //{
-        //transform.rotation = Quaternion.Euler(_r);
-        //}
-        //else if (_r.x + _r.y < 0 && _r.x + _r.y <= -1f)
-        //{
-        //    transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * -_rotationLimit);
-        //}
+        }       
     }
 }

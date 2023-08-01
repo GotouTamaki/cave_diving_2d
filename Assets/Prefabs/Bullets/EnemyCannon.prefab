@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9074770116560307202}
   - component: {fileID: 9074770116560307203}
   - component: {fileID: 1855210729}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyCannon
   m_TagString: EnemyCannon
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _muzzle: {fileID: 9074770116999868285}
-  _bullet: {fileID: 3114856404500399566, guid: 3f8b7429efbd7f64b8425a6adc231115, type: 3}
+  _bullet: {fileID: 1126343481050957905, guid: e4c67a23c9c38c24c836a6ed1dd81817, type: 3}
   _rotationLimit: 90
 --- !u!58 &1855210729
 CircleCollider2D:
@@ -127,7 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9074770116999868285}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MuzzleEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

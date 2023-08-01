@@ -5,7 +5,6 @@ using static UnityEditor.Progress;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
-[RequireComponent(typeof(CircleCollider2D))]
 public class ItemBase : MonoBehaviour
 {
     //　アイテムデータベース

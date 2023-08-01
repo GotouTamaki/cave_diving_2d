@@ -7,12 +7,14 @@ public class CannonRightController : InputBase
 {
     /// <summary>ƒ}ƒYƒ‹‚ÌˆÊ’u</summary>
     [SerializeField] Transform _muzzle = default;
+    /// <summary>ƒ^[ƒQƒbƒg‚ÌˆÊ’u</summary>
+    [SerializeField] GameObject _target = default;
     /// <summary>’e‚Ìí—Ş</summary>
     [SerializeField] List<GameObject> _bullet = new List<GameObject>();
     /// <summary>’e‚Ìí—Ş‚Ì”Ô†</summary>
     [SerializeField] int _bulletType = 0;
     /// <summary>‘å–C‚ÌŠp“x§ŒÀ</summary>s
-    [SerializeField] float _rotationLimit = 90f;
+    //[SerializeField] float _rotationLimit = 90f;
 
     // Šeí‰Šú‰»
     float _interval = 1f;
@@ -30,6 +32,10 @@ public class CannonRightController : InputBase
     void Update()
     {
         _timer += Time.deltaTime;
+
+        _r = _inputController.Player.PointCannonStick.ReadValue<Vector2>();
+        // ‘å–C‚ÌŠp“x•ÏX
+        this.transform.up = _target.transform.position - this.transform.position;
 
         // ’e‚Ì”­Ë
         if (_timer > _interval )
@@ -54,19 +60,6 @@ public class CannonRightController : InputBase
             }
 
             Debug.Log(_bulletType);
-        }
-
-        _r = _inputController.Player.PointCannonStick.ReadValue<Vector2>();
-        //Debug.Log(_r);
-
-        // ‘å–C‚ÌŠp“x•ÏX
-        if (_r.x + _r.y > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * _rotationLimit);
-        }
-        else if (_r.x + _r.y < 0 && _r.x + _r.y <= -1f)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, _r.x + _r.y * -_rotationLimit);
-        }
+        }        
     }
 }
