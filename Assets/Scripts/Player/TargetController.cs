@@ -17,6 +17,7 @@ public class TargetController : InputBase
     void Update()
     {
         Vector2 input = _inputController.Player.PointCannonStick.ReadValue<Vector2>();
+        //Vector2 input = _inputController.Player.PointCannonMouse.ReadValue<Vector2>();
 
         // “ü—Í‚ª–³‚¢‚Æ‚«‚ÍˆÊ’u‚ğˆÛ‚·‚é
         if (input == Vector2.zero) 
@@ -25,7 +26,8 @@ public class TargetController : InputBase
         }
         else 
         {
-            this.transform.localPosition = input * _magnification;
+            //this.transform.localPosition = input * _magnification;
+            this.transform.position = input;
         }       
     }
 }

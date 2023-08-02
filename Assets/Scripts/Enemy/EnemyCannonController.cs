@@ -34,9 +34,10 @@ public class EnemyCannonController : MonoBehaviour
         // 弾の発射
         if (_timer > _interval && other.gameObject.tag == "Player")
         {
+            this.transform.up = other.transform.position - this.transform.position;
             GameObject bullet = Instantiate(_bullet, _muzzle.position, this.transform.rotation);
-            Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<EnemyBulletBase>().Interval()}");
-            _interval = bullet.GetComponent<EnemyBulletBase>().Interval();
+            Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
+            _interval = bullet.GetComponent<BulletBase>().Interval();
             _timer = 0f;
         }
     }

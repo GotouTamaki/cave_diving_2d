@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1126343481050957909}
   - component: {fileID: 1126343481050957906}
   - component: {fileID: 1126343481050957907}
-  - component: {fileID: 1126343481050957904}
+  - component: {fileID: -683499661175158075}
   m_Layer: 11
   m_Name: BulletEnemyBubble
   m_TagString: EnemyBullet
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1126343481050957904
+--- !u!114 &-683499661175158075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1126343481050957905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60cdee5febbaa0046a79bb3c97312125, type: 3}
+  m_Script: {fileID: 11500000, guid: c359c4fa1728efd4d9fb4ba36f6bdd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 0.7
