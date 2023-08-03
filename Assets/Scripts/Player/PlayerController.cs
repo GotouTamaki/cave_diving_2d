@@ -9,14 +9,14 @@ using static UnityEngine.Rendering.DebugUI;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerController : InputBase
 {
-    [SerializeField] float _maxHp = 1;
-    [SerializeField] float _hp = 1;
+    //[SerializeField] float _maxHp = 1;
+    //[SerializeField] float _hp = 1;
     // 左右移動する力
     [SerializeField] float _moveSpeed = 5f;
     // ジャンプする力
     [SerializeField] float _jumpPower = 15f;
     /// <summary>燃焼状態の時にどれくらいライフが減るか</summary>
-    [SerializeField] float _lifeReduceSpeedOnBurning = 1;
+    //[SerializeField] float _lifeReduceSpeedOnBurning = 1;
     /// <summary>速度低下の時にどれくらい移動速度が落ちるか</summary>
     [SerializeField] float _speedReductionRatioOnSlow = 0.5f;
 
@@ -24,6 +24,7 @@ public class PlayerController : InputBase
     Rigidbody2D _rb = default;
     SpriteRenderer _sprite = default;
     BulletBase _bulletBase = default;
+    CharacterBase _characterBase = default;
     PlayerState _state = PlayerState.Normal;
     float _stateTime = 0;
     // 水平方向の入力値
@@ -41,6 +42,7 @@ public class PlayerController : InputBase
     {
         _rb = GetComponent<Rigidbody2D>();
         _sprite = GetComponent<SpriteRenderer>();
+        _characterBase = GetComponent<CharacterBase>();
     }
 
     // Update is called once per frame
@@ -49,22 +51,22 @@ public class PlayerController : InputBase
         _h = _inputController.Player.Move.ReadValue<float>();
         //Debug.Log(_inputController.Player.Move.ReadValue<float>());
 
-        _stateTime -= Time.deltaTime;
+        //_stateTime -= Time.deltaTime;
 
-        if (_stateTime < 0) 
-        {
-            _state = PlayerState.Normal;
-            _stateTime = 0;
-            //Debug.Log("ノーマル！");
-        }
+        //if (_stateTime < 0) 
+        //{
+        //    _state = PlayerState.Normal;
+        //    _stateTime = 0;
+        //    //Debug.Log("ノーマル！");
+        //}
 
-        if (_inputController.Player.Jump.triggered && _state == PlayerState.Slow && _isGrounded)//押したことを判定
+        if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Slow && _isGrounded)//押したことを判定
         {
             // ジャンプの力を加える
             _rb.AddForce(Vector2.up * _jumpPower * _speedReductionRatioOnSlow, ForceMode2D.Impulse);
             //Debug.Log("ジャンプ処理");
         }
-        else if (_inputController.Player.Jump.triggered && _state == PlayerState.Normal && _isGrounded)//押したことを判定
+        else if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Normal && _isGrounded)//押したことを判定
         {
             // ジャンプの力を加える
             _rb.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
@@ -77,20 +79,20 @@ public class PlayerController : InputBase
         FlipX(_h);
         
         // 状態異常
-        if (_state == PlayerState.Burning)
-        {
-            _hp -= _lifeReduceSpeedOnBurning * Time.deltaTime;
-            _sprite.color = Color.red;
-        }
-        else if (_state == PlayerState.Slow)
-        {
-            _sprite.color = Color.cyan;
-        }
-        else
-        {
-            _state = PlayerState.Normal;
-            _sprite.color = Color.white;
-        } 
+        //if (_state == PlayerState.Burning)
+        //{
+        //    //_hp -= _lifeReduceSpeedOnBurning * Time.deltaTime;
+        //    _sprite.color = Color.red;
+        //}
+        //else if (_state == PlayerState.Slow)
+        //{
+        //    _sprite.color = Color.cyan;
+        //}
+        //else
+        //{
+        //    _state = PlayerState.Normal;
+        //    _sprite.color = Color.white;
+        //} 
     }
 
     private void FixedUpdate()
@@ -159,11 +161,11 @@ public class PlayerController : InputBase
         }
     }
 
-    public float PlayerHp
-    {
-        get { return _hp; }
-        set { _hp = value; }
-    }
+    //public float PlayerHp
+    //{
+    //    get { return _hp; }
+    //    set { _hp = value; }
+    //}
 
     public bool LookingRight
     {
@@ -189,9 +191,9 @@ public class PlayerController : InputBase
         set { _state = value; }
     }
 
-    public float StateTime
-    {
-        get { return _stateTime; }
-        set { _stateTime = value; }
-    }
+    //public float StateTime
+    //{
+    //    get { return _stateTime; }
+    //    set { _stateTime = value; }
+    //}
 }

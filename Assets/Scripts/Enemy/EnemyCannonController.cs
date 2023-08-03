@@ -15,6 +15,8 @@ public class EnemyCannonController : MonoBehaviour
     // 各種初期化
     float _interval = 1f;
     float _timer = 0;
+    GameObject _lookingObject = null;
+    bool _look = false;
     //Vector2 _r = Vector2.zero;
 
     // Start is called before the first frame update
@@ -26,19 +28,30 @@ public class EnemyCannonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _timer += Time.deltaTime;        
+        _timer += Time.deltaTime;
+
+        if (_lookingObject != null)
+        {
+            this.transform.up = _lookingObject.transform.position - this.transform.position;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        _lookingObject = other.gameObject;
+
         // 弾の発射
         if (_timer > _interval && other.gameObject.tag == "Player")
         {
-            this.transform.up = other.transform.position - this.transform.position;
             GameObject bullet = Instantiate(_bullet, _muzzle.position, this.transform.rotation);
             Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
             _interval = bullet.GetComponent<BulletBase>().Interval();
             _timer = 0f;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        _lookingObject = null;
     }
 }

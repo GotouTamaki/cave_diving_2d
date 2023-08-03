@@ -22,7 +22,7 @@ public class CharacterBase : MonoBehaviour
     Rigidbody2D _rb = default;
     SpriteRenderer _sprite = default;
     CharacterState _state = CharacterState.Normal;
-    float _stateTime = 0;
+    [SerializeField] float _stateTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +38,16 @@ public class CharacterBase : MonoBehaviour
         if (_hp <= 0)
         {
             _state = CharacterState.Dead;
+        }
+
+        // ó‘ÔˆÙí‚É‚È‚Á‚Ä‚¢‚éŠÔ
+        _stateTime -= Time.deltaTime;
+
+        if (_stateTime < 0 && _hp > 0)
+        {
+            _state = CharacterState.Normal;
+            _stateTime = 0;
+            //Debug.Log("ƒm[ƒ}ƒ‹I");
         }
 
         // ó‘ÔˆÙí
@@ -82,6 +92,7 @@ public class CharacterBase : MonoBehaviour
 
     public CharacterState State
     {
+        get { return _state; }
         set { _state = value; }
     }
 
