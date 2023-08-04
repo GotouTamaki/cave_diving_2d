@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetController : InputBase
 {
     /// <summary>ターゲットカーソルの移動の倍率</summary>
-    [SerializeField] float _magnification = 1f;
+    [SerializeField] float _magnification = 1f;   
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +26,8 @@ public class TargetController : InputBase
         }
         else 
         {
-            //this.transform.localPosition = input * _magnification;
-            this.transform.position = input;
+            this.transform.localPosition = input * _magnification;
+            //this.transform.position = input;
         }       
     }
 }
