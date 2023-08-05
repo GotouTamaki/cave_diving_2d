@@ -7,6 +7,6 @@ public class BulletBubbleController : BulletBase
     public override void BulletEnemyHit(CharacterBase characterBase)
     {
         characterBase.State = CharacterBase.CharacterState.Slow;
-        characterBase.StateTime = _changeStateTime;
+        characterBase.StateTime = ChangeStateTime;
     }
 }

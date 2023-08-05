@@ -11,13 +11,13 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] float _maxHp = 1;
     [SerializeField] float _hp = 1;
     // 左右移動する力
-    [SerializeField] float _moveSpeed = 5f;
+    //[SerializeField] float _moveSpeed = 5f;
     // ジャンプする力
-    [SerializeField] float _jumpPower = 15f;
+    //[SerializeField] float _jumpPower = 15f;
     /// <summary>燃焼状態の時にどれくらいライフが減るか</summary>
     [SerializeField] float _lifeReduceSpeedOnBurning = 1;
     /// <summary>速度低下の時にどれくらい移動速度が落ちるか</summary>
-    [SerializeField] float _speedReductionRatioOnSlow = 0.5f;
+    //[SerializeField] float _speedReductionRatioOnSlow = 0.5f;
 
     Rigidbody2D _rb = default;
     SpriteRenderer _sprite = default;

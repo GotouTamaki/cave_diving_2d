@@ -8,6 +8,6 @@ public class BulletFlameController : BulletBase
     public override void BulletEnemyHit(CharacterBase characterBase)
     {
         characterBase.State = CharacterBase.CharacterState.Burning;
-        characterBase.StateTime = _changeStateTime;
+        characterBase.StateTime = ChangeStateTime;
     }
 }

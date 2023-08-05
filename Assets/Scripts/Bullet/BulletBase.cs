@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -15,7 +16,7 @@ public abstract class BulletBase : MonoBehaviour
     /// <summary>弾のインターバル</summary>
     [SerializeField] float _interval = 1f;
     /// <summary>状態異常の維持時間</summary>
-    [SerializeField] protected float _changeStateTime = 1f;
+    [SerializeField] float _changeStateTime = 1f;
 
     // 各種初期化
     GameObject _player = default;
@@ -79,8 +80,9 @@ public abstract class BulletBase : MonoBehaviour
         return _interval;
     }
 
-    public float ChangeStateTime()
+    public float ChangeStateTime
     {
-        return _changeStateTime;
+        get { return _changeStateTime; }
+        set { _changeStateTime = value; }
     }
 }
