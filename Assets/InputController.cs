@@ -116,6 +116,15 @@ public partial class @InputController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PointResetStick"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c2d05f4-2bfd-4482-b191-709e212d69cf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -470,6 +479,17 @@ public partial class @InputController: IInputActionCollection2, IDisposable
                     ""action"": ""PointCannonStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32c55599-6629-4326-9139-1dc599b60c7b"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointResetStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -488,6 +508,7 @@ public partial class @InputController: IInputActionCollection2, IDisposable
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_PointCannonMouse = m_Player.FindAction("PointCannonMouse", throwIfNotFound: true);
         m_Player_PointCannonStick = m_Player.FindAction("PointCannonStick", throwIfNotFound: true);
+        m_Player_PointResetStick = m_Player.FindAction("PointResetStick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -559,6 +580,7 @@ public partial class @InputController: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_PointCannonMouse;
     private readonly InputAction m_Player_PointCannonStick;
+    private readonly InputAction m_Player_PointResetStick;
     public struct PlayerActions
     {
         private @InputController m_Wrapper;
@@ -573,6 +595,7 @@ public partial class @InputController: IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @PointCannonMouse => m_Wrapper.m_Player_PointCannonMouse;
         public InputAction @PointCannonStick => m_Wrapper.m_Player_PointCannonStick;
+        public InputAction @PointResetStick => m_Wrapper.m_Player_PointResetStick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -612,6 +635,9 @@ public partial class @InputController: IInputActionCollection2, IDisposable
             @PointCannonStick.started += instance.OnPointCannonStick;
             @PointCannonStick.performed += instance.OnPointCannonStick;
             @PointCannonStick.canceled += instance.OnPointCannonStick;
+            @PointResetStick.started += instance.OnPointResetStick;
+            @PointResetStick.performed += instance.OnPointResetStick;
+            @PointResetStick.canceled += instance.OnPointResetStick;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -646,6 +672,9 @@ public partial class @InputController: IInputActionCollection2, IDisposable
             @PointCannonStick.started -= instance.OnPointCannonStick;
             @PointCannonStick.performed -= instance.OnPointCannonStick;
             @PointCannonStick.canceled -= instance.OnPointCannonStick;
+            @PointResetStick.started -= instance.OnPointResetStick;
+            @PointResetStick.performed -= instance.OnPointResetStick;
+            @PointResetStick.canceled -= instance.OnPointResetStick;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -675,5 +704,6 @@ public partial class @InputController: IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnPointCannonMouse(InputAction.CallbackContext context);
         void OnPointCannonStick(InputAction.CallbackContext context);
+        void OnPointResetStick(InputAction.CallbackContext context);
     }
 }

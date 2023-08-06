@@ -28,6 +28,15 @@ public class TargetController : InputBase
         {
             this.transform.localPosition = input * _magnification;
             //this.transform.position = input;
-        }       
+        }
+
+        if (_inputController.Player.PointResetStick.triggered)
+        {
+            this.transform.localPosition = Vector2.right * _magnification;
+        }
+        //else if (ƒƒbƒNƒIƒ“‚µ‚Ä‚¢‚é)
+        //{
+
+        //}
     }
 }

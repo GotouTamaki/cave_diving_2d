@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "PointResetStick",
+                    "type": "Button",
+                    "id": "7c2d05f4-2bfd-4482-b191-709e212d69cf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -448,6 +457,17 @@
                     "action": "PointCannonStick",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "32c55599-6629-4326-9139-1dc599b60c7b",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointResetStick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
