@@ -144,11 +144,11 @@ public class PlayerController : InputBase
     private void OnTriggerStay2D(Collider2D other)
     {
 
-        if (other.gameObject.tag == "JudgmentRange" && _inputController.Player.Choice.triggered)
+        if (other.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
         {
             _canCheck = true;
-            Debug.Log(_canCheck);
-            other.GetComponent<ItemBase>().Item();
+            //Debug.Log(_canCheck);
+            //other.GetComponent<ItemBase>().Item();
         }
     }
 

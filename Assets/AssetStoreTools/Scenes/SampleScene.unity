@@ -181,9 +181,10 @@ GameObject:
   m_Component:
   - component: {fileID: 374284042}
   - component: {fileID: 374284043}
+  - component: {fileID: 374284044}
   m_Layer: 12
   m_Name: JudgmentRange
-  m_TagString: JudgmentRange
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,6 +220,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.21133333}
   serializedVersion: 2
   m_Radius: 2.16
+--- !u!114 &374284044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374284041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba1e735cd34ca543bb4a7945a1cfc51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item: {fileID: 1027005129}
 --- !u!1 &442273874
 GameObject:
   m_ObjectHideFlags: 0
