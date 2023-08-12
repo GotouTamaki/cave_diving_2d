@@ -8,6 +8,7 @@ using static PlayerController;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class CharacterBase : MonoBehaviour
 {
+    [SerializeField] GameObject _exprosionPrefab = null;
     [SerializeField] float _maxHp = 1;
     [SerializeField] float _hp = 1;
     // 左右移動する力
@@ -63,10 +64,10 @@ public class CharacterBase : MonoBehaviour
         else if (_state == CharacterState.Dead)
         {
             Debug.Log("やられた！");
-            //if (倒されたとき用のプレハブ)
-            //{
-            //    Instantiate(倒されたとき用のプレハブ, this.transform.position, 倒されたとき用のプレハブ.transform.rotation);
-            //}
+            if (_exprosionPrefab != null)
+            {
+                Instantiate(_exprosionPrefab, this.transform.position, _exprosionPrefab.transform.rotation);
+            }
             Destroy(this.gameObject);
         }
         else
