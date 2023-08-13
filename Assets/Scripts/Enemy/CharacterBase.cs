@@ -77,6 +77,12 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
+    public float CharacterMaxHp
+    {
+        get { return _maxHp; }
+        set { _maxHp = value; }
+    }
+
     public float CharacterHp
     {
         get { return _hp; }
