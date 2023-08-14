@@ -70,7 +70,8 @@ public class EnemyCannonController : MonoBehaviour
             // 色を指定する
             _line.startColor = _changeStartColor;
             _line.endColor = _changeEndColor;
-            Invoke(nameof(ShotBullet), 1f);
+            StartCoroutine(ShotBullet());
+            //Invoke(nameof(ShotBullet), 1f);
             _timer = 0f;
         }
     }
@@ -80,10 +81,12 @@ public class EnemyCannonController : MonoBehaviour
         _lookingObject = null;
     }
 
-    void ShotBullet()
+    IEnumerator ShotBullet()
     {
+        yield return new WaitForSeconds(_interval);
         GameObject bullet = Instantiate(_bullet, _muzzle.position, this.transform.rotation);
         Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
-        _interval = bullet.GetComponent<BulletBase>().Interval();       
+        _interval = bullet.GetComponent<BulletBase>().Interval();
+        //yield return new WaitForSeconds(_interval);
     }
 }
