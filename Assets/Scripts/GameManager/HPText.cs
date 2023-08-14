@@ -22,12 +22,14 @@ public class HPText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // HP‚ÌŽæ“¾
         if (_hp > 0) 
         {
             _hp = _player.GetComponent<CharacterBase>().CharacterHp;
         }
 
-        if (_hp <= _maxHp / 10) 
+        // HP‚ÌF•ÏX‚Ìˆ—
+        if (_hp <= _maxHp / 5 || _hp <= 1) 
         {
             _hpText.color = Color.red;
         }

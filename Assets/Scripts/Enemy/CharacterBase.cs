@@ -36,7 +36,7 @@ public class CharacterBase : MonoBehaviour
     void Update()
     {
         // ¶€”»’è
-        if (_hp <= 0)
+        if (_hp < 1)
         {
             _state = CharacterState.Dead;
         }

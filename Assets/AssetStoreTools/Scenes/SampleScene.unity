@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpText: {fileID: 363965851}
+  _maxHp: 1
   _hp: 1
   _player: {fileID: 1401099057}
 --- !u!114 &363965851
@@ -825,11 +826,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4295548084844242099, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
       propertyPath: _hp
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4295548084844242099, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
       propertyPath: _maxHp
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4295548084844242099, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
       propertyPath: _exprosionPrefab
