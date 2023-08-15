@@ -13,16 +13,16 @@ public class Menu : InputBase
     void Start()
     {
         _menuCanvas.SetActive(false);
-        _itemPanel.SetActive(false);
+        //_itemPanel.SetActive(false);
         _documentPanel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_inputController.Player.Crouch.triggered)
+        if(_inputController.Player.Choice.triggered)
         {
-            _menuCanvas.SetActive(!_menuCanvas);
+            _menuCanvas.SetActive(!_menuCanvas.activeSelf);
         }
     }
 }
