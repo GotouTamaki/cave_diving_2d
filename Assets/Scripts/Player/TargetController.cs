@@ -10,6 +10,7 @@ public class TargetController : InputBase
     Vector2 _pos = Vector2.zero;
     bool _canLook = false;
     bool _isLook = false;
+    public bool _useMouse = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,8 +44,16 @@ public class TargetController : InputBase
         //    _pos.x += dirX * 0.1f;
         //    _pos.y += dirY * 0.1f;
         //}
-
-        if (_inputController.Player.PointResetStick.triggered && !_canLook)
+        if (_useMouse)
+        {
+            // Camera.main でメインカメラ（MainCamera タグの付いた Camera）を取得する
+            // Camera.ScreenToWorldPoint 関数で、スクリーン座標をワールド座標に変換する
+            Vector3 mousePosition = Input.mousePosition;
+            // ターゲットが見えなくなってしまうため、Z 座標を調整している
+            mousePosition.z = 10;
+            transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
+        }
+        else if (_inputController.Player.PointResetStick.triggered && !_canLook)
         {
             this.transform.localPosition = Vector2.right * _magnification;
         }

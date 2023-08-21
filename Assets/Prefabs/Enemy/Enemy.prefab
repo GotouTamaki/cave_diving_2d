@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpText: {fileID: 951956036}
+  _maxHp: 1
   _hp: 1
   _player: {fileID: 5789641513317204544}
 --- !u!1 &2014158256
@@ -334,6 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a023b73a87d29e347b7801c462c128ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _exprosionPrefab: {fileID: 0}
   _maxHp: 10
   _hp: 10
   _lifeReduceSpeedOnBurning: 1
