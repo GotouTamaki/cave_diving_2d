@@ -96,7 +96,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PointResetStick",
+                    "name": "PointReset",
                     "type": "Button",
                     "id": "7c2d05f4-2bfd-4482-b191-709e212d69cf",
                     "expectedControlType": "Button",
@@ -465,7 +465,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PointResetStick",
+                    "action": "PointReset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6e1493e-6876-4fbc-b1d6-604e5280f193",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointReset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
