@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (var item in _items) 
         {
-            //ItemNumber.Add(ItemDataBase.GetItemLists()[item], 0);
+            //ItemNumber.Add(ItemDataBase.GetItemLists(), false);
         }
 
     }
