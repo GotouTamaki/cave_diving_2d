@@ -130,32 +130,32 @@ public class PlayerController : InputBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.gameObject.tag == "JudgmentRange" && _inputController.Player.Choice.triggered)
+        //if (collision.gameObject.tag == "CollisionDetection")
         //{
-        //    _canCheck = true;
-        //    Debug.Log(_canCheck);
-        //    collision.GetComponent<ItemBase>().Item();
+        //    //_canCheck = true;
+        //    //Debug.Log(_canCheck);
+        //    //collision.GetComponent<ItemBase>().ItemGet();
         //}
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
 
-        if (other.gameObject.tag == "Item" && _inputController.Player.Choice.triggered)
-        {
-            _canCheck = true;
-            //Debug.Log(_canCheck);
-            //other.GetComponent<ItemBase>().Item();
-        }
+        //if (other.gameObject.tag == "Item")
+        //{
+        //    _canCheck = true;
+        //    //Debug.Log(_canCheck);
+        //    //other.GetComponent<ItemBase>().Item();
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "JudgmentRange" && _inputController.Player.Choice.triggered)
-        {
-            _canCheck = true;
-            Debug.Log(_canCheck);
-        }
+        //if (collision.gameObject.tag == "JudgmentRange" && _inputController.Player.Choice.triggered)
+        //{
+        //    _canCheck = true;
+        //    Debug.Log(_canCheck);
+        //}
     }
 
     //public float PlayerHp

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,10 +5,6 @@ using UnityEngine;
 public class ItemDataBase : ScriptableObject
 {
     [SerializeField] List<Item> _itemLists = new List<Item>();
+    public List<Item> ItemLists => _itemLists;
 
-    //　アイテムリストを返す
-    public List<Item> GetItemLists()
-    {
-        return _itemLists;
-    }
 }

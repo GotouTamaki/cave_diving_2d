@@ -1,40 +1,38 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] ItemDataBase _itemDataBase;
-    [SerializeField] List<GameObject> _items = new List<GameObject>();
+    //[SerializeField] ItemDataBase _itemDataBase;
+    //[SerializeField] List<GameObject> _items = new List<GameObject>();
 
+    public static InventoryManager instance = null;
     // 持ち物管理
-    List<Item> ItemList = new List<Item>();
+    [SerializeField] List<Item> _itemList = new List<Item>();
+    public List<Item> ItemList => _itemList;
     // アイテム管理
-    Dictionary<Item, bool> ItemNumber = new Dictionary<Item, bool>();
+    //Dictionary<Item, int> ItemNumber = new Dictionary<Item, int>();
     //アイコン管理の配列
-    List<Image> Icons = new List<Image>();
+    //List<Image> Icons = new List<Image>();
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        foreach (var item in _items) 
+        // シングルトンの設定
+        if (instance == null)
         {
-            //ItemNumber.Add(ItemDataBase.GetItemLists(), false);
+            instance = this;
         }
-
+        else
+        {
+            Destroy(instance);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddItem(Item item)
     {
-        
+        //アイテムリストの追加
+        _itemList.Add(item);
     }
 
-    public void InventoryUpdate()
-    {
-        //持ち物リストのクリア
-        ItemList.Clear();
-    }
 }
