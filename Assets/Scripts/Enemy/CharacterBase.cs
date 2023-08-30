@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -8,20 +6,18 @@ public class CharacterBase : MonoBehaviour
 {
     [SerializeField] GameObject _exprosionPrefab = null;
     [SerializeField] float _maxHp = 1;
+    public float CharacterMaxHp { get =>_maxHp; set =>_maxHp = value; }
     [SerializeField] float _hp = 1;
-    // 左右移動する力
-    //[SerializeField] float _moveSpeed = 5f;
-    // ジャンプする力
-    //[SerializeField] float _jumpPower = 15f;
-    /// <summary>燃焼状態の時にどれくらいライフが減るか</summary>
+    public float CharacterHp { get => _hp; set => _hp = value; }
     [SerializeField] float _lifeReduceSpeedOnBurning = 1;
-    /// <summary>速度低下の時にどれくらい移動速度が落ちるか</summary>
-    //[SerializeField] float _speedReductionRatioOnSlow = 0.5f;
+    public float LifeReduceSpeedOnBurning { get => _lifeReduceSpeedOnBurning; set => _lifeReduceSpeedOnBurning = value; }
 
     Rigidbody2D _rb = default;
     SpriteRenderer _sprite = default;
     CharacterState _state = CharacterState.Normal;
+    public CharacterState State { get => _state; set => _state = value; }
     [SerializeField] float _stateTime = 0;
+    public float StateTime { get => _stateTime; set => _stateTime = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -75,35 +71,11 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    public float CharacterMaxHp
-    {
-        get { return _maxHp; }
-        set { _maxHp = value; }
-    }
-
-    public float CharacterHp
-    {
-        get { return _hp; }
-        set { _hp = value; }
-    }
-
     public enum CharacterState
     {
         Normal,
         Burning,
         Slow,
         Dead,
-    }
-
-    public CharacterState State
-    {
-        get { return _state; }
-        set { _state = value; }
-    }
-
-    public float StateTime
-    {
-        get { return _stateTime; }
-        set { _stateTime = value; }
     }
 }
