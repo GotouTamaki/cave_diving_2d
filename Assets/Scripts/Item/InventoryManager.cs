@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     //[SerializeField] List<GameObject> _items = new List<GameObject>();
 
     public static InventoryManager instance = null;
+    public event Action InventoryCallBack;
     // 持ち物管理
     [SerializeField] List<Item> _itemList = new List<Item>();
     public List<Item> ItemList => _itemList;
@@ -33,6 +35,12 @@ public class InventoryManager : MonoBehaviour
     {
         //アイテムリストの追加
         _itemList.Add(item);
+        //InventorySlot.AddItemSlot(item);
+    }
+
+    public void RemoveItem(Item item)
+    {
+        _itemList.Remove(item);
     }
 
 }

@@ -10,8 +10,8 @@ public class Item : ScriptableObject
     [SerializeField] KindOfItem _kindOfItem;
     public KindOfItem GetKindOfItem => _kindOfItem;
     // アイテムのアイコン
-    [SerializeField] Image _icon;
-    public Image Icon => _icon;
+    [SerializeField] Sprite _icon;
+    public Sprite Icon => _icon;
     // アイテムの名前
     [SerializeField] string _itemName;
     public string ItemName => _itemName;

@@ -3,18 +3,26 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    Item _item = null;
-    Image _icon = null;
+    InventoryManager inventoryManager = null;
+    Item _item;
+    Image _icon;
 
-    public void AddItem(Item newitem)
+    private void Start()
+    {
+        inventoryManager = InventoryManager.instance;
+    }
+
+    public void AddItemSlot(Item newitem)
     {
         _item = newitem;
-        _icon = newitem.Icon;
+        _icon.sprite = newitem.Icon;
+        _icon.enabled = true;
     }
 
     public void RemoveItem()
     {
         _item = null;
-        _icon = null;
+        _icon.sprite = null;
+        _icon.enabled = false;
     }
 }

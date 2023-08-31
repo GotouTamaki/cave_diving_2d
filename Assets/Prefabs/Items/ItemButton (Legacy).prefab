@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8347857328830618677}
   - component: {fileID: 8347857328830618674}
   - component: {fileID: 8347857328830618675}
-  m_Layer: 0
+  - component: {fileID: 5363674823982475833}
+  m_Layer: 5
   m_Name: ItemButton (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,6 +136,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5363674823982475833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347857328830618673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fffa582fb7ff8b849b475182433a19b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8347857329465060989
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +159,7 @@ GameObject:
   - component: {fileID: 8347857329465060988}
   - component: {fileID: 8347857329465060990}
   - component: {fileID: 8347857329465060991}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: IconPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +235,7 @@ GameObject:
   - component: {fileID: 8347857330682700071}
   - component: {fileID: 8347857330682700057}
   - component: {fileID: 8347857330682700070}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
