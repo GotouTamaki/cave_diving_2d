@@ -1,24 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class SceneChanger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    /// <summary>フェードのインターバル</summary>
+    [SerializeField] float _interval = 5;   
+    /// <summary>フェードパネル</summary>
+    [SerializeField] Image _fadePanel = null;
+    /// <summary>フェードモード 0がフェードイン1がフェードアウト</summary>
+    [Tooltip("フェードモード\n0がフェードイン1がフェードアウト")]
+    [SerializeField] int _fadeMode = 0;
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>引数に入力された名前のシーンに遷移します</summary>
+    /// <param name="sceneName">遷移するシーンの名前</param>
+    public void SceneChangeFade(string sceneName)
     {
-        
-    }
-
-    public void SceneChange(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
+        _fadePanel.gameObject.SetActive(true);
+        _fadePanel.DOFade(_fadeMode, _interval).OnComplete(() => SceneManager.LoadScene(sceneName));
     }
 }
