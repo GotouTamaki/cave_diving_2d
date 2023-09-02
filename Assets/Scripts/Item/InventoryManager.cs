@@ -31,6 +31,8 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    /// <summary>インベントリにアイテムを追加する</summary>
+    /// <param name="item">インベントリに追加するアイテム</param>
     public void AddItem(Item item)
     {
         //アイテムリストの追加
@@ -38,6 +40,8 @@ public class InventoryManager : MonoBehaviour
         //InventorySlot.AddItemSlot(item);
     }
 
+    /// <summary>インベントリからアイテムを削除する</summary>
+    /// <param name="item">削除するアイテム</param>
     public void RemoveItem(Item item)
     {
         _itemList.Remove(item);

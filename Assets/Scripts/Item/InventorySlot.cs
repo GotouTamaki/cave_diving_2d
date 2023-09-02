@@ -3,25 +3,20 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    InventoryManager inventoryManager = null;
-    Item _item;
-    Image _icon;
+    /// <summary>表示するアイコン</summary>
+    Image _icon = null;
 
-    private void Start()
-    {
-        inventoryManager = InventoryManager.instance;
-    }
-
+    /// <summary>アイテムスロットにアイテムを追加する</summary>　
+    /// <param name="newitem">追加するアイテム</param>
     public void AddItemSlot(Item newitem)
     {
-        _item = newitem;
         _icon.sprite = newitem.Icon;
         _icon.enabled = true;
     }
 
+    /// <summary>アイテムスロットからアイテムを削除する</summary>
     public void RemoveItem()
     {
-        _item = null;
         _icon.sprite = null;
         _icon.enabled = false;
     }
