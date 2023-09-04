@@ -4,13 +4,14 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     /// <summary>表示するアイコン</summary>
-    Image _icon = null;
+    [SerializeField] Image _icon = null;
 
     /// <summary>アイテムスロットにアイテムを追加する</summary>　
-    /// <param name="newitem">追加するアイテム</param>
-    public void AddItemSlot(Item newitem)
+    /// <param name="newItem">追加するアイテム</param>
+    public void AddItemSlot(Item newItem)
     {
-        _icon.sprite = newitem.Icon;
+        Debug.Log("a");
+        _icon.sprite = newItem.Icon;
         _icon.enabled = true;
     }
 

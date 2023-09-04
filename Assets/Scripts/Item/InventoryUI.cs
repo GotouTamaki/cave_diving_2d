@@ -16,7 +16,7 @@ public class InventoryUI : MonoBehaviour
     }
 
     /// <summary>UIÇÃçXêV</summary>
-    void UIUpdate()
+    public void UIUpdate()
     {
         for (int i = 0; i < _inventorySlots.Length; i++)
         {

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6089209861258790760}
   - component: {fileID: 6089209861258790761}
+  - component: {fileID: 2059132982}
   m_Layer: 5
   m_Name: InventoryBox
   m_TagString: Untagged
@@ -75,6 +76,19 @@ MonoBehaviour:
   m_Spacing: {x: 5, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &2059132982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089209861258790767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba9f7d949177df4a951a9b0d462e289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventoryBox: {fileID: 6089209861258790760}
 --- !u!1001 &850139236408683677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -694,6 +708,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6089209861258790760}
     m_Modifications:
+    - target: {fileID: 5363674823982475833, guid: 3b12491e156fbf04bb3cde5b8cc8cda4, type: 3}
+      propertyPath: _icon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8347857328830618672, guid: 3b12491e156fbf04bb3cde5b8cc8cda4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

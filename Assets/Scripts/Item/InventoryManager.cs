@@ -37,11 +37,11 @@ public class InventoryManager : MonoBehaviour
     {
         //アイテムリストの追加
         _itemList.Add(item);
-        //InventorySlot.AddItemSlot(item);
+        InventoryCallBack();
     }
 
     /// <summary>インベントリからアイテムを削除する</summary>
-    /// <param name="item">削除するアイテム</param>
+    /// <param name="item">インベントリから削除するアイテム</param>
     public void RemoveItem(Item item)
     {
         _itemList.Remove(item);
