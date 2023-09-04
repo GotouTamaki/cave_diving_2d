@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static BulletBase;
+using DG.Tweening;
 
 public class EnemyCannonController : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class EnemyCannonController : MonoBehaviour
     /// <summary>大砲の角度制限</summary>
     [SerializeField] float _rotationLimit = 90f;
     /// <summary>線の変更前の色</summary>
-    [SerializeField] Color _defaultSrartColor;
+    [SerializeField] Color _defaultStartColor;
     [SerializeField] Color _defaultEndColor;
     /// <summary>線の変更後の色</summary>
     [SerializeField] Color _changeStartColor;
@@ -42,51 +42,65 @@ public class EnemyCannonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         _timer += Time.deltaTime;
 
         if (_lookingObject != null)
         {
             this.transform.up = _lookingObject.transform.position - this._muzzle.position;
+            // LineRendererの始点と終点
+            _line.SetPosition(0, this._muzzle.position);
+            _line.SetPosition(1, _lookingObject.transform.position);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            _lookingObject = other.gameObject;
-            // LineRenderereの始点と終点
-            _line.SetPosition(0, this._muzzle.position);
-            _line.SetPosition(1, other.transform.position);
+            _lookingObject = other.gameObject;          
             // 色を指定する
-            _line.startColor = _defaultSrartColor;
+            _line.startColor = _defaultStartColor;
             _line.endColor = _defaultEndColor;
+            StartCoroutine(ShotBullet());
         }
 
         // 弾の発射
         if (_timer > _interval && other.gameObject.tag == "Player")
-        {          
+        {
             // 色を指定する
             _line.startColor = _changeStartColor;
             _line.endColor = _changeEndColor;
-            StartCoroutine(ShotBullet());
-            //Invoke(nameof(ShotBullet), 1f);
             _timer = 0f;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _lookingObject = null;
+        if (collision.gameObject.tag == "Player")
+        {
+            _lookingObject = null;
+            StopCoroutine(ShotBullet());
+        }
+    }
+
+    void ShootColor()
+    {
+        var beforeMat = _changeEndColor;
+        _line.material.DOFade(1, _interval).OnComplete(() => _line.material.color = beforeMat);
     }
 
     IEnumerator ShotBullet()
     {
-        yield return new WaitForSeconds(_interval);
-        GameObject bullet = Instantiate(_bullet, _muzzle.position, this.transform.rotation);
-        Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
-        _interval = bullet.GetComponent<BulletBase>().Interval();
-        //yield return new WaitForSeconds(_interval);
+        while (true)
+        {
+            _line.material.DOFade(1, _interval).OnComplete(() => _line.material.color = _changeEndColor);
+            yield return new WaitForSeconds(_interval);
+            GameObject bullet = Instantiate(_bullet, _muzzle.position, this.transform.rotation);
+            Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
+            if (_lookingObject == null) break;
+            //_interval = bullet.GetComponent<BulletBase>().Interval();
+            //yield return new WaitForSeconds(_interval);
+        }
     }
 }
