@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -19,16 +18,16 @@ public class EnemyCannonController : MonoBehaviour
     [SerializeField] Color _changeEndColor;
     // 各種初期化
     float _interval = 1f;
-    float _timer = 0;
+    //float _timer = 0;
     GameObject _lookingObject = null;
     LineRenderer _line = null;
-    bool _look = false;
+    //bool _look = false;
     //Vector2 _r = Vector2.zero;
 
     // Start is called before the first frame update
     void Start()
     {
-        _timer = 0;
+        //_timer = 0;
         _line = GetComponent<LineRenderer>();
         // 線の幅を決める
         this._line.startWidth = 0.1f;
@@ -43,10 +42,11 @@ public class EnemyCannonController : MonoBehaviour
     void Update()
     {
 
-        _timer += Time.deltaTime;
+        //_timer += Time.deltaTime;
 
         if (_lookingObject != null)
         {
+            // プレイヤーの方向を向く
             this.transform.up = _lookingObject.transform.position - this._muzzle.position;
             // LineRendererの始点と終点
             _line.SetPosition(0, this._muzzle.position);
@@ -58,10 +58,12 @@ public class EnemyCannonController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            // プレイヤーの索敵をする
             _lookingObject = other.gameObject;          
             // 色を指定する
             _line.startColor = _defaultStartColor;
             _line.endColor = _defaultEndColor;
+            // 弾を発射する
             StartCoroutine(ShotBullet());
         }
     }
@@ -70,21 +72,25 @@ public class EnemyCannonController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            // 当たり判定からプレイヤーが外れたら索敵をやめる
             _lookingObject = null;
         }
     }
 
-    /// <summary></summary>
-    /// <returns>a</returns>
+    /// <summary>弾の発射時の処理</summary>
     IEnumerator ShotBullet()
     {
         while (true)
         {
+            // レイの描写
             _line.material.DOFade(1, _interval).OnComplete(() => _line.material.color = _changeEndColor);
             yield return new WaitForSeconds(_interval);
+            // 弾のプレハブを取得、生成する
             GameObject bullet = Instantiate(_bullet, _muzzle.position, this.transform.rotation);
             //Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
+            // インターバルの再設定
             _interval = bullet.GetComponent<BulletBase>().Interval();
+            // 索敵が終わったら処理を終える
             if (_lookingObject == null) break;       
         }
     }
