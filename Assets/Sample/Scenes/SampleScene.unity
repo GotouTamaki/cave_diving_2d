@@ -668,7 +668,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadePanel: {fileID: 1925781447}
   _interval: 2
-  _fadeMode: 1
 --- !u!1 &454132084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,8 +2637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae55176c4eeb3e74b8d1e5401eb1cc1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuCanvas: {fileID: 491809235}
-  _menuButtonCanvas: {fileID: 869508440}
+  _menuCanvas: {fileID: 1262944046}
 --- !u!114 &1486043329
 MonoBehaviour:
   m_ObjectHideFlags: 0
