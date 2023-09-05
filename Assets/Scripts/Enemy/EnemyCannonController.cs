@@ -64,15 +64,6 @@ public class EnemyCannonController : MonoBehaviour
             _line.endColor = _defaultEndColor;
             StartCoroutine(ShotBullet());
         }
-
-        // 弾の発射
-        if (_timer > _interval && other.gameObject.tag == "Player")
-        {
-            // 色を指定する
-            _line.startColor = _changeStartColor;
-            _line.endColor = _changeEndColor;
-            _timer = 0f;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -80,16 +71,11 @@ public class EnemyCannonController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _lookingObject = null;
-            StopCoroutine(ShotBullet());
         }
     }
 
-    void ShootColor()
-    {
-        var beforeMat = _changeEndColor;
-        _line.material.DOFade(1, _interval).OnComplete(() => _line.material.color = beforeMat);
-    }
-
+    /// <summary></summary>
+    /// <returns>a</returns>
     IEnumerator ShotBullet()
     {
         while (true)
@@ -97,10 +83,9 @@ public class EnemyCannonController : MonoBehaviour
             _line.material.DOFade(1, _interval).OnComplete(() => _line.material.color = _changeEndColor);
             yield return new WaitForSeconds(_interval);
             GameObject bullet = Instantiate(_bullet, _muzzle.position, this.transform.rotation);
-            Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
-            if (_lookingObject == null) break;
-            //_interval = bullet.GetComponent<BulletBase>().Interval();
-            //yield return new WaitForSeconds(_interval);
+            //Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
+            _interval = bullet.GetComponent<BulletBase>().Interval();
+            if (_lookingObject == null) break;       
         }
     }
 }

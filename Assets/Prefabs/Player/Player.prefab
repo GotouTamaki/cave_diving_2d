@@ -320,7 +320,6 @@ GameObject:
   - component: {fileID: 4295548084844242099}
   - component: {fileID: 7023270440511371323}
   - component: {fileID: 7023270440511371320}
-  - component: {fileID: 7023270440511371269}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -425,9 +424,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a023b73a87d29e347b7801c462c128ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _exprosionPrefab: {fileID: 0}
-  _maxHp: 10
-  _hp: 10
+  _exprosionPrefab: {fileID: 7832527154544968109, guid: 41bc81a3c9bab484580cab0c611f943a, type: 3}
+  _maxHp: 20
+  _hp: 20
   _lifeReduceSpeedOnBurning: 1
   _stateTime: 0
 --- !u!50 &7023270440511371323
@@ -467,22 +466,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
---- !u!58 &7023270440511371269
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7023270440511371327}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.36}
-  serializedVersion: 2
-  m_Radius: 0.25
 --- !u!1 &7023270440782822135
 GameObject:
   m_ObjectHideFlags: 0
