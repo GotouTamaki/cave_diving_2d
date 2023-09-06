@@ -11,7 +11,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance = null;
     public event Action InventoryCallBack;
     // ‚¿•¨ŠÇ—
-    [SerializeField] static List<Item> _itemList = new List<Item>();
+    [SerializeField] List<Item> _itemList = new List<Item>();
     public List<Item> ItemList => _itemList;
     // ƒAƒCƒeƒ€ŠÇ—
     //Dictionary<Item, int> ItemNumber = new Dictionary<Item, int>();
