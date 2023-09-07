@@ -14,6 +14,7 @@ public class FadeIn : MonoBehaviour
 
     void Start()
     {
+        _fadePanel.gameObject.SetActive(true);
         _fadePanel.DOFade(0, _interval).OnComplete(() => _fadePanel.gameObject.SetActive(false));
     }
 }

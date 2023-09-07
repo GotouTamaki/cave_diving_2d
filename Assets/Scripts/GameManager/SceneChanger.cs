@@ -4,9 +4,11 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 public class SceneChanger : MonoBehaviour
-{   
-    /// <summary>フェードパネル</summary>
-    [SerializeField] Image _fadePanel = null;
+{
+    /// <summary>フェードインパネル</summary>
+    [SerializeField] Image _fadeInPanel = null;
+    /// <summary>フェードアウトパネル</summary>
+    [SerializeField] Image _fadeOutPanel = null;
     /// <summary>フェードのインターバル</summary>
     [SerializeField] float _interval = 5f;
     ///// <summary>フェードモード 0がフェードイン1がフェードアウト</summary>
@@ -17,7 +19,13 @@ public class SceneChanger : MonoBehaviour
     /// <param name="sceneName">遷移するシーンの名前</param>
     public void SceneChangeFade(string sceneName)
     {
-        _fadePanel.gameObject.SetActive(true);
-        _fadePanel.DOFade(1, _interval).OnComplete(() => SceneManager.LoadScene(sceneName));
-    }   
+        _fadeInPanel.gameObject.SetActive(true);
+        _fadeInPanel.DOFade(1, _interval)
+            .OnComplete(() =>
+            {
+                SceneManager.LoadScene(sceneName);
+                _fadeInPanel.gameObject.SetActive(true);
+                _fadeInPanel.DOFade(0, _interval).OnComplete(() => _fadeInPanel.gameObject.SetActive(false));
+            });
+    }
 }
