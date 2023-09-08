@@ -18,7 +18,8 @@ public class InventorySlot : MonoBehaviour
     /// <summary>アイテムスロットからアイテムを削除する</summary>
     public void RemoveItem()
     {
-        _icon.sprite = null;
+        //_icon.sprite = null;
+        //throw new UnityException("インベントリスロットの実装漏れアリ");
         _icon.enabled = false;
     }
 }

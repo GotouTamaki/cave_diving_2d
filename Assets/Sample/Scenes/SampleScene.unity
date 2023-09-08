@@ -1637,7 +1637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d65793ec75bbd4aac1dbf190123c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 11400000, guid: 88114694042fae84eb8bf6e17460853b, type: 2}
+  _itemNum: 1
 --- !u!70 &1027005132
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2717,6 +2717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78ca79a6442c24b83caa396b5f51f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inventoryData: {fileID: 11400000, guid: 2dd769460fcf5f84faa057e1c8fe50fd, type: 2}
   _itemList: []
 --- !u!114 &1486043331
 MonoBehaviour:
@@ -3518,7 +3519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d65793ec75bbd4aac1dbf190123c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 11400000, guid: 88114694042fae84eb8bf6e17460853b, type: 2}
+  _itemNum: 2
 --- !u!70 &1886314743
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
