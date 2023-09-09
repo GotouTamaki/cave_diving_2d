@@ -45,6 +45,7 @@ public class InventoryManager : MonoBehaviour
     {
         //アイテムリストの追加
         _itemList.Add(_inventoryData.ItemLists[num]);
+        _inventoryData.ItemLists[num].UseItem();
         InventoryCallBack();
     }
 

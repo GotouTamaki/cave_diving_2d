@@ -1,4 +1,6 @@
 using System;
+using System.Xml.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,22 +8,47 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Item", menuName = "CreateItem")]
 public class Item : ScriptableObject
 {
-    // アイテムの種類
+    /// <summary>アイテムの種類</summary>
     [SerializeField] KindOfItem _kindOfItem;
+    /// <summary>アイテムの種類を取得できます</summary>
     public KindOfItem GetKindOfItem => _kindOfItem;
-    // アイテムのアイコン
+    /// <summary>アイテムのアイコン</summary>
     [SerializeField] Sprite _icon;
+    /// <summary>アイテムのアイコンを取得できます</summary>
     public Sprite Icon => _icon;
-    // アイテムの名前
+    /// <summary>アイテムの名前</summary>
     [SerializeField] string _itemName;
+    /// <summary>アイテムの名前を取得できます</summary>
     public string ItemName => _itemName;
-    // アイテムの情報
+    /// <summary>アイテムの情報</summary>
     [SerializeField] string _information;
+    /// <summary>アイテムの情報を取得できます</summary>
     public string Information => _information;
+    /// <summary>アイテムの効果対象の種類</summary>
+    [SerializeField] SubjectOfEffects _subjectOfEffects;
+    /// <summary>アイテムの効果対象の名前</summary>
+    [SerializeField] string _objectName;
+    /// <summary>アイテムの効果の大きさ</summary>
+    [SerializeField] float _effects;
 
     public enum KindOfItem
     {
         Weapon,
         UseItem
+    }
+
+    enum SubjectOfEffects
+    {
+        Bullets,
+        Players,
+        Enemies,
+    }
+
+    public void UseItem()
+    {
+        string address = $"Assets/Prefabs/{_subjectOfEffects}/{_objectName}.prefab";
+        GameObject targetPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
+        BulletBase subjectComponent = targetPrefab.GetComponent<BulletBase>();
+        subjectComponent.Interval = subjectComponent.Interval / _effects;
     }
 }

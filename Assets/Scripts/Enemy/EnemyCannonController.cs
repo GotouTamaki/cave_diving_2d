@@ -89,7 +89,7 @@ public class EnemyCannonController : MonoBehaviour
             GameObject bullet = Instantiate(_bullet, _muzzle.position, this.transform.rotation);
             //Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
             // インターバルの再設定
-            _interval = bullet.GetComponent<BulletBase>().Interval();
+            _interval = bullet.GetComponent<BulletBase>().Interval;
             // 索敵が終わったら処理を終える
             if (_lookingObject == null) break;       
         }

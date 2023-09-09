@@ -43,8 +43,8 @@ public class CannonRightController : InputBase
             if (_inputController.Player.FireRight.IsPressed())//押したことを判定
             {
                 GameObject bullet = Instantiate(_bullet[_bulletType], _muzzle.position, this.transform.rotation);
-                Debug.Log($"右砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
-                _interval = bullet.GetComponent<BulletBase>().Interval();
+                Debug.Log($"右砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval}");
+                _interval = bullet.GetComponent<BulletBase>().Interval;
                 _timer = 0f;
             }
         }

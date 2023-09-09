@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -14,36 +12,20 @@ public abstract class BulletBase : MonoBehaviour
     [SerializeField] float _damage = 1f;
     /// <summary>弾のインターバル</summary>
     [SerializeField] float _interval = 1f;
+    public float Interval { get => _interval; set => _interval = value; }
     /// <summary>状態異常の維持時間</summary>
     [SerializeField] float _changeStateTime = 1f;
+    public float ChangeStateTime { get => _changeStateTime; set => _changeStateTime = value; }
 
     // 各種初期化
-    GameObject _player = default;
     Rigidbody2D _rb = default;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //_player = GameObject.FindWithTag("Player");
         _rb = GetComponent<Rigidbody2D>();
-        //_rb.velocity = transform.right * _bulletSpeed;
-        //bool player = _player.GetComponent<PlayerController>().LookingRight;
-        //Debug.Log(player);
-
-        // プレイヤーの方向を取得
-        //if (player)
-        //{
-            _rb.velocity = transform.up * _bulletSpeed;
-            //Debug.Log(player);
-        //}
-        //else
-        //{
-        //    _rb.velocity = -transform.up * _bulletSpeed;
-        //    //Debug.Log(player);
-        //}
+        _rb.velocity = transform.up * _bulletSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         _lifeTime -= Time.deltaTime;
@@ -61,7 +43,6 @@ public abstract class BulletBase : MonoBehaviour
     }
 
     public abstract void BulletEnemyHit(CharacterBase characterBase);
-    //public abstract void BulletMove();
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -72,16 +53,5 @@ public abstract class BulletBase : MonoBehaviour
             other.GetComponent<CharacterBase>().CharacterHp -= _damage;
             Destroy(this.gameObject);
         }
-    }
-
-    public float Interval()
-    {
-        return _interval;
-    }
-
-    public float ChangeStateTime
-    {
-        get { return _changeStateTime; }
-        set { _changeStateTime = value; }
     }
 }

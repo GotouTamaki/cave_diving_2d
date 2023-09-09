@@ -23,14 +23,17 @@ public class PlayerController : InputBase
     BulletBase _bulletBase = default;
     CharacterBase _characterBase = default;
     PlayerState _state = PlayerState.Normal;
+    public PlayerState State { set => _state = value; }
     float _stateTime = 0;
     // 水平方向の入力値
     float _h = 0;
     float _scaleX = 0;
     bool _lookingRight = true;
+    public bool CharacterHp { get => _lookingRight; set => _lookingRight = value; }
     // ジャンプの入力値
     float _jumpCount = 0;
     bool _isGrounded = false;
+    public bool IsGrounded { get => _isGrounded; set => _isGrounded = value; }
     float _axis = 0;
     bool _canCheck = false;
 
@@ -48,15 +51,6 @@ public class PlayerController : InputBase
         _h = _inputController.Player.Move.ReadValue<float>();
         //Debug.Log(_inputController.Player.Move.ReadValue<float>());
 
-        //_stateTime -= Time.deltaTime;
-
-        //if (_stateTime < 0) 
-        //{
-        //    _state = PlayerState.Normal;
-        //    _stateTime = 0;
-        //    //Debug.Log("ノーマル！");
-        //}
-
         if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Slow && _isGrounded)//押したことを判定
         {
             // ジャンプの力を加える
@@ -71,25 +65,8 @@ public class PlayerController : InputBase
         }
 
         _axis = _inputController.Player.Move.ReadValue<float>();//入力方向をfloat型で取得
-
         // 入力に応じて左右を反転させる   
         FlipX(_h);
-        
-        // 状態異常
-        //if (_state == PlayerState.Burning)
-        //{
-        //    //_hp -= _lifeReduceSpeedOnBurning * Time.deltaTime;
-        //    _sprite.color = Color.red;
-        //}
-        //else if (_state == PlayerState.Slow)
-        //{
-        //    _sprite.color = Color.cyan;
-        //}
-        //else
-        //{
-        //    _state = PlayerState.Normal;
-        //    _sprite.color = Color.white;
-        //} 
     }
 
     private void FixedUpdate()
@@ -130,50 +107,7 @@ public class PlayerController : InputBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.gameObject.tag == "CollisionDetection")
-        //{
-        //    //_canCheck = true;
-        //    //Debug.Log(_canCheck);
-        //    //collision.GetComponent<ItemBase>().ItemGet();
-        //}
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-
-        //if (other.gameObject.tag == "Item")
-        //{
-        //    _canCheck = true;
-        //    //Debug.Log(_canCheck);
-        //    //other.GetComponent<ItemBase>().Item();
-        //}
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //if (collision.gameObject.tag == "JudgmentRange" && _inputController.Player.Choice.triggered)
-        //{
-        //    _canCheck = true;
-        //    Debug.Log(_canCheck);
-        //}
-    }
-
-    //public float PlayerHp
-    //{
-    //    get { return _hp; }
-    //    set { _hp = value; }
-    //}
-
-    public bool LookingRight
-    {
-        get { return _lookingRight; } 
-        set { _lookingRight = value; }
-    }
-
-    public bool IsGrounded
-    {
-        get { return _isGrounded; }
-        set { _isGrounded = value; }
+        
     }
 
     public enum PlayerState
@@ -182,15 +116,4 @@ public class PlayerController : InputBase
         Burning,
         Slow,
     }
-
-    public PlayerState State
-    {
-        set { _state = value; }
-    }
-
-    //public float StateTime
-    //{
-    //    get { return _stateTime; }
-    //    set { _stateTime = value; }
-    //}
 }

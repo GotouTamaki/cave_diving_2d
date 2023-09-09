@@ -42,8 +42,8 @@ public class CannonLeftController : InputBase
             if (_inputController.Player.FireLeft.IsPressed())//押したことを判定
             {
                 GameObject bullet = Instantiate(_bullet[_bulletType], _muzzle.position, this.transform.rotation);
-                Debug.Log($"左砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
-                _interval = bullet.GetComponent<BulletBase>().Interval();
+                Debug.Log($"左砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval}");
+                _interval = bullet.GetComponent<BulletBase>().Interval;
                 _timer = 0f;
             }
         }
