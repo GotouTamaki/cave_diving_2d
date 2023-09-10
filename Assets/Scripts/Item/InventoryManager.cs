@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -37,7 +34,7 @@ public class InventoryManager : MonoBehaviour
             //見つかったが、２つあった場合
             FindAnyObjectByType<InventoryManager>();
         }
-    }    
+    }
 
     /// <summary>インベントリにアイテムを追加する</summary>
     /// <param name="item">インベントリに追加するアイテム</param>

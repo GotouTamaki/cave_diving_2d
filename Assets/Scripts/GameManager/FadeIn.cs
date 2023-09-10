@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 public class FadeIn : MonoBehaviour
-{   
+{
     /// <summary>フェードパネル</summary>
     [SerializeField] Image _fadePanel = null;
     /// <summary>フェードのインターバル</summary>

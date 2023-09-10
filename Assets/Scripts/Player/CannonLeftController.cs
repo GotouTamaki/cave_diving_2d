@@ -59,6 +59,6 @@ public class CannonLeftController : InputBase
             }
 
             Debug.Log(_bulletType);
-        }       
+        }
     }
 }

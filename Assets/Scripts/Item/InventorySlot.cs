@@ -6,7 +6,7 @@ public class InventorySlot : MonoBehaviour
     /// <summary>表示するアイコン</summary>
     [SerializeField] Image _icon = null;
 
-    /// <summary>アイテムスロットにアイテムを追加する</summary>　
+    /// <summary>アイテムスロットにアイテムを追加する</summary>
     /// <param name="newItem">追加するアイテム</param>
     public void AddItemSlot(Item newItem)
     {

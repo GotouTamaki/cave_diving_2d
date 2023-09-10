@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XInput;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(CircleCollider2D))]
 public class GroundCheckerController : MonoBehaviour
@@ -18,7 +14,7 @@ public class GroundCheckerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

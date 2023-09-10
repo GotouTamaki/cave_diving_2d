@@ -3,7 +3,7 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] Transform _inventoryBox = null;
-    
+
     InventorySlot[] _inventorySlots = null;
     InventoryManager _inventoryManager = null;
 

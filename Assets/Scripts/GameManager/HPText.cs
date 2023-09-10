@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,17 +21,17 @@ public class HPText : MonoBehaviour
     void Update()
     {
         // HP‚Ìæ“¾
-        if (_hp > 0) 
+        if (_hp > 0)
         {
             _hp = _player.GetComponent<CharacterBase>().CharacterHp;
         }
 
         // HP‚ÌF•ÏX‚Ìˆ—
-        if (_hp <= _maxHp / 5 || _hp <= 1) 
+        if (_hp <= _maxHp / 5 || _hp <= 1)
         {
             _hpText.color = Color.red;
         }
-        else if ( _hp <= _maxHp / 2) 
+        else if ( _hp <= _maxHp / 2)
         {
             _hpText.color = Color.yellow;
         }

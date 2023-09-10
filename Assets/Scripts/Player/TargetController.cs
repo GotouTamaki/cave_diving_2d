@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetController : InputBase
 {
     /// <summary>ターゲットカーソルの移動の倍率</summary>
-    [SerializeField] float _magnification = 1f;   
+    [SerializeField] float _magnification = 1f;
 
     Vector2 _pos = Vector2.zero;
     bool _canLook = false;
@@ -24,24 +22,16 @@ public class TargetController : InputBase
         Vector2 input = _inputController.Player.PointCannonStick.ReadValue<Vector2>();
 
         // 入力が無いときは位置を維持する
-        if (input == Vector2.zero) 
+        if (input == Vector2.zero)
         {
             this.transform.localPosition = this.transform.localPosition;
         }
-        else 
+        else
         {
             this.transform.localPosition = input * _magnification;
             //this.transform.position = input;
         }
 
-        //float dirX = this.transform.localPosition.x - input.x * _magnification;
-        //float dirY = this.transform.localPosition.y - input.y * _magnification;
-
-        //if (dirX != 0 && dirY != 0)
-        //{
-        //    _pos.x += dirX * 0.1f;
-        //    _pos.y += dirY * 0.1f;
-        //}
         if (_useMouse)
         {
             // Camera.main でメインカメラ（MainCamera タグの付いた Camera）を取得する

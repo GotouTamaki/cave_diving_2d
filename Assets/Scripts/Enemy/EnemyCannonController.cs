@@ -59,7 +59,7 @@ public class EnemyCannonController : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             // プレイヤーの索敵をする
-            _lookingObject = other.gameObject;          
+            _lookingObject = other.gameObject;
             // 色を指定する
             _line.startColor = _defaultStartColor;
             _line.endColor = _defaultEndColor;
@@ -91,7 +91,7 @@ public class EnemyCannonController : MonoBehaviour
             // インターバルの再設定
             _interval = bullet.GetComponent<BulletBase>().Interval;
             // 索敵が終わったら処理を終える
-            if (_lookingObject == null) break;       
+            if (_lookingObject == null) break;
         }
     }
 }

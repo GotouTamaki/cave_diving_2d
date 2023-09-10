@@ -1,8 +1,6 @@
 using System;
-using System.Xml.Linq;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 [Serializable]
 [CreateAssetMenu(fileName = "Item", menuName = "CreateItem")]

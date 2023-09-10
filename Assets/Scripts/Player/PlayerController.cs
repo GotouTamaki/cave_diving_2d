@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -65,14 +63,14 @@ public class PlayerController : InputBase
         }
 
         _axis = _inputController.Player.Move.ReadValue<float>();//“ü—Í•ûŒü‚ğfloatŒ^‚Åæ“¾
-        // “ü—Í‚É‰‚¶‚Ä¶‰E‚ğ”½“]‚³‚¹‚é   
+        // “ü—Í‚É‰‚¶‚Ä¶‰E‚ğ”½“]‚³‚¹‚é
         FlipX(_h);
     }
 
     private void FixedUpdate()
     {
         // ‰¡ˆÚ“®‚Ì—Í‚ğ‰Á‚¦‚é‚Ì‚Í FixedUpdate ‚Ås‚¤
-        if (_state == PlayerState.Slow) 
+        if (_state == PlayerState.Slow)
         {
             _rb.AddForce(Vector2.right * _h * _moveSpeed * _speedReductionRatioOnSlow, ForceMode2D.Force);
         }
@@ -80,7 +78,6 @@ public class PlayerController : InputBase
         {
             _rb.AddForce(Vector2.right * _h * _moveSpeed, ForceMode2D.Force);
         }
-        
     }
 
     void FlipX(float horizontal)
@@ -107,7 +104,7 @@ public class PlayerController : InputBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
     }
 
     public enum PlayerState
