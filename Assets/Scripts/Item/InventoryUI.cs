@@ -12,7 +12,10 @@ public class InventoryUI : MonoBehaviour
         // 子オブジェクトのインベントリスロットを全て取得する
         _inventorySlots = _inventoryBox.GetComponentsInChildren<InventorySlot>();
         _inventoryManager = InventoryManager.instance;
-        _inventoryManager.InventoryCallBack += UIUpdate;
+        if (_inventoryManager.InventoryCallBack == null)
+        {
+            _inventoryManager.InventoryCallBack += UIUpdate;
+        }
     }
 
     /// <summary>UIの更新</summary>

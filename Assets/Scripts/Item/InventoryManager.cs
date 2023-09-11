@@ -8,7 +8,7 @@ public class InventoryManager : MonoBehaviour
     //[SerializeField] List<GameObject> _items = new List<GameObject>();
 
     public static InventoryManager instance = null;
-    public event Action InventoryCallBack;
+    public Action InventoryCallBack;
     [SerializeField] ItemDataBase _inventoryData = null;
     // ‚¿•¨ŠÇ—
     [SerializeField] List<Item> _itemList = new List<Item>();
