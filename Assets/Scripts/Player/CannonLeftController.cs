@@ -12,7 +12,7 @@ public class CannonLeftController : InputBase
     [SerializeField] List<GameObject> _bullet = new List<GameObject>();
     /// <summary>’e‚Ìí—Ş‚Ì”Ô†</summary>
     [SerializeField] int _bulletType = 0;
-    /// <summary>‘å–C‚ÌŠp“x§ŒÀ</summary>s
+    /// <summary>‘å–C‚ÌŠp“x§ŒÀ</summary>
     //[SerializeField] float _rotationLimit = 90f;
 
     // Šeí‰Šú‰»
@@ -20,14 +20,11 @@ public class CannonLeftController : InputBase
     float _timer = 0;
     Vector2 _r = Vector2.zero;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //_interval = _bullet[_bulletType].BulletBase.Interval();
         _timer = _interval;
     }
 
-    // Update is called once per frame
     void Update()
     {
         _timer += Time.deltaTime;
@@ -39,9 +36,11 @@ public class CannonLeftController : InputBase
         // ’e‚Ì”­Ë
         if (_timer > _interval)
         {
-            if (_inputController.Player.FireLeft.IsPressed())//‰Ÿ‚µ‚½‚±‚Æ‚ğ”»’è
+            if (_inputController.Player.FireLeft.IsPressed())// ‰Ÿ‚µ‚½‚±‚Æ‚ğ”»’è
             {
                 GameObject bullet = Instantiate(_bullet[_bulletType], _muzzle.position, this.transform.rotation);
+                //TODO CannonController‚É‚ ‚éBulletParameter‚Ì’l‚ğˆø”‚É‘ã“ü‚Å‚«‚é‚æ‚¤‚É‚·‚é
+                //bullet.Parameter();
                 Debug.Log($"¶–C”­ËAƒCƒ“ƒ^[ƒoƒ‹{bullet.GetComponent<BulletBase>().Interval}");
                 _interval = bullet.GetComponent<BulletBase>().Interval;
                 _timer = 0f;
@@ -49,7 +48,7 @@ public class CannonLeftController : InputBase
         }
 
         // ’e‚ÌØ‚è‘Ö‚¦
-        if (_inputController.Player.BulletChangeL.triggered)//‰Ÿ‚µ‚½‚±‚Æ‚ğ”»’è
+        if (_inputController.Player.BulletChangeL.triggered)// ‰Ÿ‚µ‚½‚±‚Æ‚ğ”»’è
         {
             ++_bulletType;
 
@@ -60,5 +59,10 @@ public class CannonLeftController : InputBase
 
             Debug.Log(_bulletType);
         }
+    }
+
+    void Parameter()
+    {
+
     }
 }

@@ -44,9 +44,9 @@ public class Item : ScriptableObject
 
     public void UseItem()
     {
-        string address = $"Assets/Prefabs/{_subjectOfEffects}/{_objectName}.prefab";
-        GameObject targetPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
-        BulletBase subjectComponent = targetPrefab.GetComponent<BulletBase>();
-        subjectComponent.Interval = subjectComponent.Interval / _effects;
+        //string address = $"Assets/Prefabs/{_subjectOfEffects}/{_objectName}.prefab";
+        //GameObject targetPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
+        //BulletParameter subjectComponent = targetPrefab.GetComponent<BulletParameter>();
+        //subjectComponent.Interval = subjectComponent.Interval / _effects;
     }
 }

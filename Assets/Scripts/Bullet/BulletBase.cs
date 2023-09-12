@@ -3,8 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
 public abstract class BulletBase : MonoBehaviour
-{
-    /// <summary>弾のスピード</summary>
+{    /// <summary>弾のスピード</summary>
     [SerializeField] float _bulletSpeed = 1f;
     /// <summary>弾のライフタイム</summary>
     [SerializeField] float _lifeTime = 10f;
@@ -12,9 +11,9 @@ public abstract class BulletBase : MonoBehaviour
     [SerializeField] float _damage = 1f;
     /// <summary>弾のインターバル</summary>
     [SerializeField] float _interval = 1f;
-    public float Interval { get => _interval; set => _interval = value; }
     /// <summary>状態異常の維持時間</summary>
     [SerializeField] float _changeStateTime = 1f;
+    public float Interval { get => _interval; set => _interval = value; }
     public float ChangeStateTime { get => _changeStateTime; set => _changeStateTime = value; }
 
     // 各種初期化
@@ -36,12 +35,6 @@ public abstract class BulletBase : MonoBehaviour
         }
     }
 
-    protected void FixedUpdate()
-    {
-        //_rb.velocity = Vector2.right * _bulletSpeed;
-        //_rb.AddForce(Vector2.right * _bulletSpeed, ForceMode2D.Impulse);
-    }
-
     public abstract void BulletEnemyHit(CharacterBase characterBase);
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,4 +47,12 @@ public abstract class BulletBase : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    public void Parameter()
+    {
+
+    }
 }
+
+
+
