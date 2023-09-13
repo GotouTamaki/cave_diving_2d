@@ -9,7 +9,7 @@ public class CannonLeftController : InputBase
     /// <summary>ターゲットの位置</summary>
     [SerializeField] GameObject _target = default;
     /// <summary>弾の種類</summary>
-    [SerializeField] List<GameObject> _bullet = new List<GameObject>();
+    [SerializeField] List<BulletBase> _bullet = new List<BulletBase>();
     /// <summary>弾の種類の番号</summary>
     [SerializeField] int _bulletType = 0;
     /// <summary>大砲の角度制限</summary>
@@ -38,11 +38,11 @@ public class CannonLeftController : InputBase
         {
             if (_inputController.Player.FireLeft.IsPressed())// 押したことを判定
             {
-                GameObject bullet = Instantiate(_bullet[_bulletType], _muzzle.position, this.transform.rotation);
+                BulletBase bullet = Instantiate(_bullet[_bulletType], _muzzle.position, this.transform.rotation);
                 //TODO CannonControllerにあるBulletParameterの値を引数に代入できるようにする
-                //bullet.Parameter();
+                Parameter(bullet);
                 Debug.Log($"左砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval}");
-                _interval = bullet.GetComponent<BulletBase>().Interval;
+                _interval = bullet.Interval;
                 _timer = 0f;
             }
         }
@@ -61,8 +61,12 @@ public class CannonLeftController : InputBase
         }
     }
 
-    void Parameter()
+    void Parameter(BulletBase bulletBase)
     {
-
+        foreach (Item item in InventoryManager.instance.ItemList)
+        {
+            bulletBase.Damage += item.EffectValue;
+            bulletBase.Interval /= item.EffectValue;
+        }
     }
 }

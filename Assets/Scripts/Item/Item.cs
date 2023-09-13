@@ -27,7 +27,8 @@ public class Item : ScriptableObject
     /// <summary>アイテムの効果対象の名前</summary>
     [SerializeField] string _objectName;
     /// <summary>アイテムの効果の大きさ</summary>
-    [SerializeField] float _effects;
+    [SerializeField] float _effectValue;
+    public float EffectValue => _effectValue;
 
     public enum KindOfItem
     {
@@ -47,6 +48,6 @@ public class Item : ScriptableObject
         //string address = $"Assets/Prefabs/{_subjectOfEffects}/{_objectName}.prefab";
         //GameObject targetPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
         //BulletParameter subjectComponent = targetPrefab.GetComponent<BulletParameter>();
-        //subjectComponent.Interval = subjectComponent.Interval / _effects;
+        //subjectComponent.Interval = subjectComponent.Interval / _effectValue;
     }
 }
