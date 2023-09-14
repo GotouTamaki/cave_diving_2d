@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +6,7 @@ public class CannonLeftController : InputBase
     /// <summary>マズルの位置</summary>
     [SerializeField] Transform _muzzle = default;
     /// <summary>ターゲットの位置</summary>
-    [SerializeField] GameObject _target = default;
-    /// <summary>弾の種類</summary>
+    [SerializeField] GameObject _target = default; /// <summary>弾の種類</summary>
     [SerializeField] List<BulletBase> _bullet = new List<BulletBase>();
     /// <summary>弾の種類の番号</summary>
     [SerializeField] int _bulletType = 0;
@@ -52,7 +50,7 @@ public class CannonLeftController : InputBase
         {
             ++_bulletType;
 
-            if (_bulletType > 4)
+            if (_bulletType > _bullet.Count)
             {
                 _bulletType = 0;
             }

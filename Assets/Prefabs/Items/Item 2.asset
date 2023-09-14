@@ -18,4 +18,4 @@ MonoBehaviour:
   _information: "\u5143\u6C17\u306B\u306A\u3063\u305F\uFF01"
   _subjectOfEffects: 0
   _objectName: NormalBullet
-  _effectValue: 0
+  _effectValue: 2

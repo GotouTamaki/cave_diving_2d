@@ -16,3 +16,6 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 8352671f25ca1fe4faf4f4fc4c9ce16e, type: 3}
   _itemName: NameTest
   _information: InfoTest
+  _subjectOfEffects: 0
+  _objectName: 
+  _effectValue: 2
