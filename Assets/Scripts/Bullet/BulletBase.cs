@@ -54,8 +54,11 @@ public abstract class BulletBase : MonoBehaviour
             BulletEnemyHit(other.GetComponent<CharacterBase>());
             // ƒ_ƒ[ƒW‚ğ—^‚¦‚éˆ—
             other.GetComponent<CharacterBase>().CharacterHp -= _damage;
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
+
+        Destroy(this.gameObject);
+
     }
 }
 
