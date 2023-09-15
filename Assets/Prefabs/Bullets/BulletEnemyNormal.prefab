@@ -248,5 +248,6 @@ MonoBehaviour:
   _bulletSpeed: 1
   _lifeTime: 10
   _damage: 1
-  _interval: 1
+  _interval: 5
+  _minInterval: 1
   _changeStateTime: 1
