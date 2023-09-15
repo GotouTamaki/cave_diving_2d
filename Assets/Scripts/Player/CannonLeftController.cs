@@ -50,7 +50,7 @@ public class CannonLeftController : InputBase
         {
             ++_bulletType;
 
-            if (_bulletType > _bullet.Count)
+            if (_bulletType >= _bullet.Count)
             {
                 _bulletType = 0;
             }
