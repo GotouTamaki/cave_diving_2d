@@ -53,13 +53,13 @@ public class CannonRightController : InputBase
         if (_inputController.Player.BulletChangeR.triggered)//‰Ÿ‚µ‚½‚±‚Æ‚ð”»’è
         {
             ++_bulletType;
- 
+
             if (_bulletType > 4)
             {
                 _bulletType = 0;
             }
 
             Debug.Log(_bulletType);
-        }        
+        }
     }
 }

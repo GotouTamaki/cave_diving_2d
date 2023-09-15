@@ -1281,6 +1281,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1038834976}
     - target: {fileID: 160859153, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
+      propertyPath: _minInterval
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 160859153, guid: 9f9f170b0c9f7e149a737e2119ce5544, type: 3}
       propertyPath: _bullet.Array.data[0]
       value: 
       objectReference: {fileID: 699091085041576333, guid: 9154d11a63ef7d342b1e24701363e0fa, type: 3}

@@ -12,10 +12,18 @@ public abstract class BulletBase : MonoBehaviour
     [SerializeField] float _damage = 1f;
     /// <summary>弾のインターバル</summary>
     [SerializeField] float _interval = 1f;
+    /// <summary>弾のインターバルの最小値</summary>
+    [SerializeField] float _minInterval = 0.05f;
     /// <summary>状態異常の維持時間</summary>
     [SerializeField] float _changeStateTime = 1f;
+
+    /// <summary>弾のダメージを取得できます</summary>
     public float Damage { get => _damage; set => _damage = value; }
+    /// <summary>弾のインターバルを取得できます</summary>
     public float Interval { get => _interval; set => _interval = value; }
+    /// <summary>弾のインターバルの最小値を取得できます</summary>
+    public float MinInterval { get => _minInterval; set => _minInterval = value; }
+    /// <summary>状態異常の維持時間を取得できます</summary>
     public float ChangeStateTime { get => _changeStateTime; set => _changeStateTime = value; }
 
     // 各種初期化

@@ -10,6 +10,7 @@ public class CannonLeftController : InputBase
     [SerializeField] List<BulletBase> _bullet = new List<BulletBase>();
     /// <summary>弾の種類の番号</summary>
     [SerializeField] int _bulletType = 0;
+
     /// <summary>大砲の角度制限</summary>
     //[SerializeField] float _rotationLimit = 90f;
 
@@ -63,8 +64,14 @@ public class CannonLeftController : InputBase
     {
         foreach (Item item in InventoryManager.instance.ItemList)
         {
-            bulletBase.Damage += item.EffectValue;
-            bulletBase.Interval /= item.EffectValue;
+            bulletBase.Damage += item.DamageChangeValue;
+            bulletBase.Interval -= item.IntervalChangeValue;
+        }
+
+        if (bulletBase.Interval <= bulletBase.MinInterval)
+        {
+            bulletBase.Interval = bulletBase.MinInterval;
+            Debug.Log($"{bulletBase}のインターバルはもう短くならない！！");
         }
     }
 }

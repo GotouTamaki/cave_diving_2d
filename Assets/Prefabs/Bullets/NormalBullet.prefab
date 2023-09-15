@@ -125,6 +125,7 @@ MonoBehaviour:
   _lifeTime: 5
   _damage: 1
   _interval: 0.5
+  _minInterval: 0.1
   _changeStateTime: 1
 --- !u!58 &6083851556526061993
 CircleCollider2D:
