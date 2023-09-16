@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour
     // アイテム番号受け取り用
     int _itemNumber = 0;
     public int ItemNumber { get =>_itemNumber; set =>_itemNumber = value; }
+    public ItemDataBase InventoryData => _inventoryData;
     // アイテム管理
     //Dictionary<Item, int> ItemNumber = new Dictionary<Item, int>();
     //アイコン管理の配列
