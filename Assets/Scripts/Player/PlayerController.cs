@@ -29,7 +29,9 @@ public class PlayerController : InputBase
     bool _lookingRight = true;
     public bool CharacterHp { get => _lookingRight; set => _lookingRight = value; }
     // ジャンプの入力値
-    float _jumpCount = 0;
+    [SerializeField]int _jumpCount = 0;
+    public int JumpCount { get => _jumpCount; set => _jumpCount = value; }
+    [SerializeField] int _jumpCountLimit = 1;
     bool _isGrounded = false;
     public bool IsGrounded { get => _isGrounded; set => _isGrounded = value; }
     float _axis = 0;
@@ -49,16 +51,18 @@ public class PlayerController : InputBase
         _h = _inputController.Player.Move.ReadValue<float>();
         //Debug.Log(_inputController.Player.Move.ReadValue<float>());
 
-        if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Slow && _isGrounded)//押したことを判定
+        if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Slow && (_isGrounded || _jumpCount > _jumpCountLimit))//押したことを判定
         {
             // ジャンプの力を加える
             _rb.AddForce(Vector2.up * _jumpPower * _speedReductionRatioOnSlow, ForceMode2D.Impulse);
+            _jumpCount++;
             //Debug.Log("ジャンプ処理");
         }
-        else if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Normal && _isGrounded)//押したことを判定
+        else if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Normal && (_isGrounded || _jumpCount > _jumpCountLimit))//押したことを判定
         {
             // ジャンプの力を加える
             _rb.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+            _jumpCount++;
             //Debug.Log("ジャンプ処理");
         }
 
@@ -102,9 +106,21 @@ public class PlayerController : InputBase
 
     }
 
+    void PlayerParameterChange()
+    {
+        foreach (Item item in InventoryManager.instance.ItemList)
+        {
+            _jumpCountLimit += item.PlayerJumpCountChange;
+            Debug.Log($"JumpCountLimit:{_jumpCountLimit}");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if (collision.gameObject.tag == "Item")
+        {
+            PlayerParameterChange();
+        }
     }
 
     public enum PlayerState

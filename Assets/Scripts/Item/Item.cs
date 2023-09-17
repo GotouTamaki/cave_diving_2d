@@ -20,13 +20,13 @@ public class Item : ScriptableObject
     /// <summary>アイテムの効果の大きさ</summary>
     //[SerializeField] float _effectValue;
     /// <summary>弾のダメージの変更効果の大きさ</summary>
-    [SerializeField] float _damageChangeValue;
+    [SerializeField] int _damageChangeValue;
     /// <summary>弾のインターバルの変更効果の大きさ</summary>
     [SerializeField] float _intervalChangeValue;
     /// <summary>プレイヤーのHP回復の効果の大きさ</summary>
     [SerializeField] float _playerHealthValue;
     /// <summary>プレイヤーのジャンプ回数の変更効果の大きさ</summary>
-    [SerializeField] float _playerJumpCountChange;
+    [SerializeField] int _playerJumpCountChange;
 
     /// <summary>アイテムの種類を取得できます</summary>
     //public KindOfItem GetKindOfItem => _kindOfItem;
@@ -39,13 +39,13 @@ public class Item : ScriptableObject
     /// <summary>アイテムの効果の大きさを取得できます</summary>
     //public float EffectValue => _effectValue;
     /// <summary>弾のダメージの変更効果の大きさを取得できます</summary>
-    public float DamageChangeValue => _damageChangeValue;
+    public int DamageChangeValue => _damageChangeValue;
     /// <summary>弾のインターバルの変更効果の大きさを取得できます</summary>
     public float IntervalChangeValue => _intervalChangeValue;
     /// <summary>プレイヤーのHP回復の効果の大きさを取得できます</summary>
     public float PlayerHealthValue => _playerHealthValue;
     /// <summary>プレイヤーのジャンプ回数の変更効果の大きさを取得できます</summary>
-    public float PlayerJumpCountChange => _playerJumpCountChange;
+    public int PlayerJumpCountChange => _playerJumpCountChange;
 
     //public enum KindOfItem
     //{

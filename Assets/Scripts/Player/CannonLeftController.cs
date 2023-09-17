@@ -39,7 +39,7 @@ public class CannonLeftController : InputBase
             {
                 BulletBase bullet = Instantiate(_bullet[_bulletType], _muzzle.position, this.transform.rotation);
                 //TODO CannonControllerにあるBulletParameterの値を引数に代入できるようにする
-                Parameter(bullet);
+                BulletParameterChange(bullet);
                 Debug.Log($"左砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval}");
                 _interval = bullet.Interval;
                 _timer = 0f;
@@ -60,7 +60,7 @@ public class CannonLeftController : InputBase
         }
     }
 
-    void Parameter(BulletBase bulletBase)
+    void BulletParameterChange(BulletBase bulletBase)
     {
         foreach (Item item in InventoryManager.instance.ItemList)
         {

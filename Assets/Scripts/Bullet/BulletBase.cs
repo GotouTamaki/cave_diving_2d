@@ -9,7 +9,7 @@ public abstract class BulletBase : MonoBehaviour
     /// <summary>弾のライフタイム</summary>
     [SerializeField] float _lifeTime = 10f;
     /// <summary>弾のダメージ</summary>
-    [SerializeField] float _damage = 1f;
+    [SerializeField] int _damage = 1;
     /// <summary>弾のインターバル</summary>
     [SerializeField] float _interval = 1f;
     /// <summary>弾のインターバルの最小値</summary>
@@ -18,7 +18,7 @@ public abstract class BulletBase : MonoBehaviour
     [SerializeField] float _changeStateTime = 1f;
 
     /// <summary>弾のダメージを取得できます</summary>
-    public float Damage { get => _damage; set => _damage = value; }
+    public int Damage { get => _damage; set => _damage = value; }
     /// <summary>弾のインターバルを取得できます</summary>
     public float Interval { get => _interval; set => _interval = value; }
     /// <summary>弾のインターバルの最小値を取得できます</summary>

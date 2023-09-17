@@ -18,4 +18,4 @@ MonoBehaviour:
   _damageChangeValue: 2
   _intervalChangeValue: 0.2
   _playerHealthValue: 0
-  _playerJumpCountChange: 0
+  _playerJumpCountChange: 1

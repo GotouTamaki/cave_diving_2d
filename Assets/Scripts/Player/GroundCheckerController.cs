@@ -20,6 +20,7 @@ public class GroundCheckerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _playerController.IsGrounded = true;
+        _playerController.JumpCount = 0;
     }
 
     private void OnTriggerStay2D(Collider2D other)
