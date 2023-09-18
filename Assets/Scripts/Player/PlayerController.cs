@@ -14,6 +14,8 @@ public class PlayerController : InputBase
     //[SerializeField] float _lifeReduceSpeedOnBurning = 1;
     /// <summary>速度低下の時にどれくらい移動速度が落ちるか</summary>
     [SerializeField] float _speedReductionRatioOnSlow = 0.5f;
+    /// <summary>初期のジャンプ回数のリミット</summary>
+    [SerializeField] int _initialJumpCount = 1;
 
     // 各種初期化
     Rigidbody2D _rb = default;
@@ -21,21 +23,21 @@ public class PlayerController : InputBase
     BulletBase _bulletBase = default;
     CharacterBase _characterBase = default;
     PlayerState _state = PlayerState.Normal;
-    public PlayerState State { set => _state = value; }
     float _stateTime = 0;
     // 水平方向の入力値
     float _h = 0;
     float _scaleX = 0;
     bool _lookingRight = true;
-    public bool CharacterHp { get => _lookingRight; set => _lookingRight = value; }
     // ジャンプの入力値
-    [SerializeField]int _jumpCount = 0;
-    public int JumpCount { get => _jumpCount; set => _jumpCount = value; }
-    [SerializeField] int _jumpCountLimit = 1;
+    int _jumpCount = 0;
+    int _jumpCountLimit = 1;
     bool _isGrounded = false;
-    public bool IsGrounded { get => _isGrounded; set => _isGrounded = value; }
-    float _axis = 0;
     bool _canCheck = false;
+
+    public PlayerState State { set => _state = value; }
+    public bool CharacterHp { get => _lookingRight; set => _lookingRight = value; }
+    public bool IsGrounded { get => _isGrounded; set => _isGrounded = value; }
+    public int JumpCount { get => _jumpCount; set => _jumpCount = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -43,22 +45,23 @@ public class PlayerController : InputBase
         _rb = GetComponent<Rigidbody2D>();
         _sprite = GetComponent<SpriteRenderer>();
         _characterBase = GetComponent<CharacterBase>();
+        PlayerParameterChange();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _h = _inputController.Player.Move.ReadValue<float>();
+        _h = _inputController.Player.Move.ReadValue<float>(); //入力方向をfloat型で取得
         //Debug.Log(_inputController.Player.Move.ReadValue<float>());
 
-        if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Slow && (_isGrounded || _jumpCount > _jumpCountLimit))//押したことを判定
+        if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Slow && (_isGrounded || _jumpCount < _jumpCountLimit))//押したことを判定
         {
             // ジャンプの力を加える
             _rb.AddForce(Vector2.up * _jumpPower * _speedReductionRatioOnSlow, ForceMode2D.Impulse);
             _jumpCount++;
             //Debug.Log("ジャンプ処理");
         }
-        else if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Normal && (_isGrounded || _jumpCount > _jumpCountLimit))//押したことを判定
+        else if (_inputController.Player.Jump.triggered && _characterBase.State == CharacterBase.CharacterState.Normal && (_isGrounded || _jumpCount < _jumpCountLimit))//押したことを判定
         {
             // ジャンプの力を加える
             _rb.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
@@ -66,7 +69,6 @@ public class PlayerController : InputBase
             //Debug.Log("ジャンプ処理");
         }
 
-        _axis = _inputController.Player.Move.ReadValue<float>();//入力方向をfloat型で取得
         // 入力に応じて左右を反転させる
         FlipX(_h);
     }
@@ -108,11 +110,15 @@ public class PlayerController : InputBase
 
     void PlayerParameterChange()
     {
+        int jumpCountChange = 0;
+
         foreach (Item item in InventoryManager.instance.ItemList)
         {
-            _jumpCountLimit += item.PlayerJumpCountChange;
-            Debug.Log($"JumpCountLimit:{_jumpCountLimit}");
+            jumpCountChange += item.PlayerJumpCountChange;
         }
+
+        _jumpCountLimit = _initialJumpCount + jumpCountChange;
+        Debug.Log($"JumpCountLimit:{_jumpCountLimit}");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
