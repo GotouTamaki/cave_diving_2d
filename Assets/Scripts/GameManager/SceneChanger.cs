@@ -23,4 +23,16 @@ public class SceneChanger : MonoBehaviour
                 _fadePanel.DOFade(0, _interval).OnComplete(() => _fadePanel.gameObject.SetActive(false));
             });
     }
+
+    public void SceneResetFade(string sceneName)
+    {
+        // フェードモード 0がフェードイン 1がフェードアウト
+        _fadePanel.gameObject.SetActive(true);
+        _fadePanel.DOFade(1, _interval)
+            .OnComplete(() =>
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                _fadePanel.DOFade(0, _interval).OnComplete(() => _fadePanel.gameObject.SetActive(false));
+            });
+    }
 }
