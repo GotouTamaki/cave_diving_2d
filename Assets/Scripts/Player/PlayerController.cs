@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cinemachine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -22,6 +23,8 @@ public class PlayerController : InputBase
     SpriteRenderer _sprite = default;
     BulletBase _bulletBase = default;
     CharacterBase _characterBase = default;
+    /// <summary>Cinemachineの仮想カメラ</summary>
+    CinemachineVirtualCamera _vcam = default;
     PlayerState _state = PlayerState.Normal;
     float _stateTime = 0;
     // 水平方向の入力値
@@ -45,6 +48,10 @@ public class PlayerController : InputBase
         _rb = GetComponent<Rigidbody2D>();
         _sprite = GetComponent<SpriteRenderer>();
         _characterBase = GetComponent<CharacterBase>();
+        //Cinemachineのインスタンスの取得と追跡対象と捕捉対象の登録
+        _vcam = FindAnyObjectByType<CinemachineVirtualCamera>();
+        _vcam.m_LookAt = this.gameObject.transform;
+        _vcam.m_Follow = this.gameObject.transform;
         PlayerParameterChange();
     }
 
@@ -95,17 +102,20 @@ public class PlayerController : InputBase
          * */
         _scaleX = this.transform.localScale.x;
 
-        if (horizontal > 0)
-        {
-            _sprite.flipX = false;
-            _lookingRight = true;
-        }
-        else if (horizontal < 0)
-        {
-            _sprite.flipX = true;
-            _lookingRight = false;
-        }
-
+        //if (horizontal > 0)
+        //{
+        //    _sprite.flipX = false;
+        //    _lookingRight = true;
+        //}
+        //else if (horizontal < 0)
+        //{
+        //    _sprite.flipX = true;
+        //    _lookingRight = false;
+        //}
+        //画像フリップ処理
+        _sprite.flipX = horizontal < 0;
+        //右を向いてるかのフラグ
+        _lookingRight = horizontal > 0;
     }
 
     void PlayerParameterChange()

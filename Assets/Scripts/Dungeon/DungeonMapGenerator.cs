@@ -29,9 +29,15 @@ public class DungeonMapGenerator : MonoBehaviour
     /// •”‰®‚ÌÅ¬Y = 4
     /// </summary>
     static int Y_RECT_MIN;
-    /// <summary>•”‰®‚ÆÚ‘±‚·‚éX’Ê˜HÅ‘å”</summary>
+    /// <summary>
+    /// •”‰®‚ÆÚ‘±‚·‚éX’Ê˜HÅ‘å”
+    /// Šï”‚Í¸”s‚µ‚â‚·‚¢
+    /// </summary>
     static int X_LOAD_MAX;
-    /// <summary>•”‰®‚ÆÚ‘±‚·‚éY’Ê˜HÅ‘å”</summary>
+    /// <summary>
+    /// •”‰®‚ÆÚ‘±‚·‚éY’Ê˜HÅ‘å”
+    /// Šï”‚Í¸”s‚µ‚â‚·‚¢
+    /// </summary>
     static int Y_LOAD_MAX;
     /// <summary>Å‘å•”‰®”</summary>
     static int FLOOR_MAX;
@@ -154,9 +160,9 @@ public class DungeonMapGenerator : MonoBehaviour
                 if(mapData[y, x] == TYPE.FLOOR || mapData[y, x] == TYPE.LOAD_UP || mapData[y, x] == TYPE.LOAD_DOWN || mapData[y, x] == TYPE.LOAD_RIGHT || mapData[y, x] == TYPE.LOAD_LEFT)
                 {
                     //Instantiate(_floorTile,new Vector2(x,y), this.transform.rotation);
-                    if (!_playerSet && mapData[y, x] == TYPE.LOAD_UP)
+                    if (!_playerSet && mapData[y, x] == TYPE.FLOOR)
                     {
-                        _player.transform.position = new Vector2(y, x);
+                        Instantiate(_player, new Vector2(x, y), this.transform.rotation);
                         _playerSet = true;
                     }
                 }
