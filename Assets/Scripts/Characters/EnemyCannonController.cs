@@ -5,7 +5,7 @@ using DG.Tweening;
 public class EnemyCannonController : MonoBehaviour
 {
     /// <summary>マズルの位置</summary>
-    [SerializeField] Transform _muzzle = default;
+    [SerializeField] Transform[] _muzzle = default;
     /// <summary>弾の種類</summary>
     [SerializeField] GameObject _bullet = default;
     /// <summary>大砲の角度制限</summary>
@@ -16,6 +16,8 @@ public class EnemyCannonController : MonoBehaviour
     /// <summary>線の変更後の色</summary>
     [SerializeField] Color _changeStartColor;
     [SerializeField] Color _changeEndColor;
+    [SerializeField] bool _canLook = true;
+
     // 各種初期化
     float _interval = 1f;
     //float _timer = 0;
@@ -29,13 +31,16 @@ public class EnemyCannonController : MonoBehaviour
     {
         //_timer = 0;
         _line = GetComponent<LineRenderer>();
-        // 線の幅を決める
-        this._line.startWidth = 0.1f;
-        this._line.endWidth = 0.1f;
-        // 頂点の数を決める
-        this._line.positionCount = 2;
-        // マテリアルの設定
-        _line.material = new Material(Shader.Find("Sprites/Default"));
+        if (_canLook)
+        {
+            // 線の幅を決める
+            this._line.startWidth = 0.1f;
+            this._line.endWidth = 0.1f;
+            // 頂点の数を決める
+            this._line.positionCount = 2;
+            // マテリアルの設定
+            _line.material = new Material(Shader.Find("Sprites/Default"));
+        }
     }
 
     // Update is called once per frame
@@ -44,12 +49,12 @@ public class EnemyCannonController : MonoBehaviour
 
         //_timer += Time.deltaTime;
 
-        if (_lookingObject != null)
+        if (_lookingObject != null && _canLook)
         {
             // プレイヤーの方向を向く
-            this.transform.up = _lookingObject.transform.position - this._muzzle.position;
+            this.transform.up = _lookingObject.transform.position - this._muzzle[0].position;
             // LineRendererの始点と終点
-            _line.SetPosition(0, this._muzzle.position);
+            _line.SetPosition(0, this._muzzle[0].position);
             _line.SetPosition(1, _lookingObject.transform.position);
         }
     }
@@ -60,9 +65,14 @@ public class EnemyCannonController : MonoBehaviour
         {
             // プレイヤーの索敵をする
             _lookingObject = other.gameObject;
-            // 色を指定する
-            _line.startColor = _defaultStartColor;
-            _line.endColor = _defaultEndColor;
+
+            if (_canLook)
+            {
+                // 色を指定する
+                _line.startColor = _defaultStartColor;
+                _line.endColor = _defaultEndColor;
+            }
+
             // 弾を発射する
             StartCoroutine(ShotBullet());
         }
@@ -82,11 +92,18 @@ public class EnemyCannonController : MonoBehaviour
     {
         while (true)
         {
-            // レイの描写
-            _line.material.DOFade(1, _interval).OnComplete(() => _line.material.color = _changeEndColor);
-            yield return new WaitForSeconds(_interval);
+            if (_canLook)
+            {
+                // レイの描写
+                _line.material.DOFade(1, _interval).OnComplete(() => _line.material.color = _changeEndColor);
+                yield return new WaitForSeconds(_interval);
+            }
+
+            //this.transform.up = this.transform.up + new Vector3(Random.Range(-10, 10), 0, 0);
+            // 発射するマズルを決める
+            int muzzleNum = Random.Range(0, _muzzle.Length);
             // 弾のプレハブを取得、生成する
-            GameObject bullet = Instantiate(_bullet, _muzzle.position, this.transform.rotation);
+            GameObject bullet = Instantiate(_bullet, _muzzle[muzzleNum].position, _muzzle[muzzleNum].rotation);
             //Debug.Log($"敵砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval()}");
             // インターバルの再設定
             _interval = bullet.GetComponent<BulletBase>().Interval;
