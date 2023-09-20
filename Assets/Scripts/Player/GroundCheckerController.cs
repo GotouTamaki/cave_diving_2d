@@ -6,7 +6,7 @@ public class GroundCheckerController : MonoBehaviour
     PlayerController _playerController = null;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
