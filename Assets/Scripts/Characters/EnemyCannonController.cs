@@ -31,16 +31,16 @@ public class EnemyCannonController : MonoBehaviour
     {
         //_timer = 0;
         _line = GetComponent<LineRenderer>();
-        if (_canLook)
-        {
-            // 線の幅を決める
-            this._line.startWidth = 0.1f;
-            this._line.endWidth = 0.1f;
-            // 頂点の数を決める
-            this._line.positionCount = 2;
-            // マテリアルの設定
-            _line.material = new Material(Shader.Find("Sprites/Default"));
-        }
+        //if (_canLook)
+        //{
+        // 線の幅を決める
+        this._line.startWidth = 0.1f;
+        this._line.endWidth = 0.1f;
+        // 頂点の数を決める
+        this._line.positionCount = 2;
+        // マテリアルの設定
+        _line.material = new Material(Shader.Find("Sprites/Default"));
+        //}
     }
 
     // Update is called once per frame
@@ -92,13 +92,9 @@ public class EnemyCannonController : MonoBehaviour
     {
         while (true)
         {
-            if (_canLook)
-            {
-                // レイの描写
-                _line.material.DOFade(1, _interval).OnComplete(() => _line.material.color = _changeEndColor);
-                yield return new WaitForSeconds(_interval);
-            }
-
+            // レイの描写
+            _line.material.DOFade(1, _interval).OnComplete(() => _line.material.color = _changeEndColor);
+            yield return new WaitForSeconds(_interval);
             //this.transform.up = this.transform.up + new Vector3(Random.Range(-10, 10), 0, 0);
             // 発射するマズルを決める
             int muzzleNum = Random.Range(0, _muzzle.Length);

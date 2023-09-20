@@ -17,6 +17,9 @@ public abstract class BulletBase : MonoBehaviour
     /// <summary>状態異常の維持時間</summary>
     [SerializeField] float _changeStateTime = 1f;
 
+    // 各種初期化
+    Rigidbody2D _rb = null;
+
     /// <summary>弾のダメージを取得できます</summary>
     public int Damage { get => _damage; set => _damage = value; }
     /// <summary>弾のインターバルを取得できます</summary>
@@ -25,17 +28,17 @@ public abstract class BulletBase : MonoBehaviour
     public float MinInterval { get => _minInterval; set => _minInterval = value; }
     /// <summary>状態異常の維持時間を取得できます</summary>
     public float ChangeStateTime { get => _changeStateTime; set => _changeStateTime = value; }
+    /// <summary>Rigidbody2Dを取得できます</summary>t;
+    public Rigidbody2D BulletRb2D => _rb;
 
-    // 各種初期化
-    Rigidbody2D _rb = default;
 
-    void Start()
+    public void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _rb.velocity = transform.up * _bulletSpeed;
     }
 
-    void Update()
+    public void Update()
     {
         _lifeTime -= Time.deltaTime;
 
