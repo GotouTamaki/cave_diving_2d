@@ -19,7 +19,7 @@ public class DungeonMapGenerator : MonoBehaviour
     /// <summary>プレイヤーの設定</summary>
     [SerializeField] GameObject _player = null;
     /// <summary>HP表示の設定</summary>
-    [SerializeField] HPText _hpText = null;
+    [SerializeField] HPUI _hpText = null;
     /// <summary>床の設定</summary>
     [SerializeField] GameObject _floorBlock = null;
     /// <summary>敵の設定</summary>

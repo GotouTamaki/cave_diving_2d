@@ -27,6 +27,9 @@ public class HPUI : MonoBehaviour
         {
             if (_player == null)
             {
+                _hp = 0;
+                // HP‚Ì•\Ž¦
+                _hpText.text = "HP:" + _hp.ToString("F0");
                 break;
             }
 

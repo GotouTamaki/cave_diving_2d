@@ -1,15 +1,16 @@
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class InventorySlot : MonoBehaviour
 {
     /// <summary>表示するアイコン</summary>
     [SerializeField] Image _icon = null;
+    [SerializeField] Color _iconColor = Color.white;
+    [SerializeField] Color _iconSelectColor = Color.white;
     [SerializeField] Text _infoText = null;
 
     Item _item = null;
+    Color _beforeColor = Color.white;
 
     /// <summary>アイテムスロットにアイテムを追加する</summary>
     /// <param name="newItem">追加するアイテム</param>
@@ -18,6 +19,7 @@ public class InventorySlot : MonoBehaviour
         Debug.Log("a");
         _item = newItem;
         _icon.sprite = newItem.Icon;
+        _icon.color = Color.white;
         _icon.enabled = true;
     }
 
@@ -27,7 +29,19 @@ public class InventorySlot : MonoBehaviour
         //_icon.sprite = null;
         //throw new UnityException("インベントリスロットの実装漏れアリ");
         _icon.sprite = InventoryManager.instance.InventoryData.ItemLists[0].Icon;
+        _icon.color = _iconColor;
         _icon.enabled = true;
+    }
+
+    public void IconPointeEnter()
+    {
+        _beforeColor = _icon.color;
+        _icon.color = _iconSelectColor;
+    }
+
+    public void IconPointeExit()
+    {
+        _icon.color = _beforeColor;
     }
 
     public void DisplayInfo()
