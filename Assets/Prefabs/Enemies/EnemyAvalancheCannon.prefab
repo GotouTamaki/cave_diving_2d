@@ -97,6 +97,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 6131548501552854307, guid: 1af853c8db2e3cf4dbfcf05efa8afb8d, type: 3}
+      propertyPath: _bullet
+      value: 
+      objectReference: {fileID: 6323642433291169021, guid: e6647457918205745813b2156a7d9bc8, type: 3}
+    - target: {fileID: 6131548501552854307, guid: 1af853c8db2e3cf4dbfcf05efa8afb8d, type: 3}
+      propertyPath: _canLook
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131548501552854307, guid: 1af853c8db2e3cf4dbfcf05efa8afb8d, type: 3}
+      propertyPath: _muzzle.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131548501552854307, guid: 1af853c8db2e3cf4dbfcf05efa8afb8d, type: 3}
+      propertyPath: _muzzle.Array.data[1]
+      value: 
+      objectReference: {fileID: 1521307152}
+    - target: {fileID: 6131548501552854307, guid: 1af853c8db2e3cf4dbfcf05efa8afb8d, type: 3}
+      propertyPath: _muzzle.Array.data[2]
+      value: 
+      objectReference: {fileID: 1863361823}
     - target: {fileID: 9074770116560307201, guid: 1af853c8db2e3cf4dbfcf05efa8afb8d, type: 3}
       propertyPath: m_RootOrder
       value: 0
