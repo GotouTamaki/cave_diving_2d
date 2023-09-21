@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +14,21 @@ public class DungeonMapGenerator : MonoBehaviour
     [SerializeField] int y_LOAD_MAX = 2;     // 部屋と接続するY通路最大数
     [SerializeField] int floor_MAX = 6;      // 最大部屋数
     [SerializeField] int floor_PADDING = 2;  // 壁との余白
+    /// <summary>マップタイルの設定</summary>
+    [SerializeField] GameObject _mapTile = null;
+    /// <summary>プレイヤーの設定</summary>
+    [SerializeField] GameObject _player = null;
+    /// <summary>HP表示の設定</summary>
+    [SerializeField] HPText _hpText = null;
+    /// <summary>床の設定</summary>
+    [SerializeField] GameObject _floorBlock = null;
+    /// <summary>敵の設定</summary>
+    [SerializeField] GameObject[] _enemy = null;
+    /// <summary>アイテムの設定</summary>
+    [SerializeField] GameObject[] _item = null;
+    /// <summary>アイテムの配置個数制限</summary>
+    [SerializeField] int _itemCountLimit = 40;
+
     /// <summary>MAP最大X</summary>
     static int X_MAX;
     /// <summary>MAP最大Y</summary>
@@ -43,10 +57,11 @@ public class DungeonMapGenerator : MonoBehaviour
     static int FLOOR_MAX;
     /// <summary>壁との余白</summary>
     static int FLOOR_PADDING;
-    [SerializeField] GameObject _floorTile = null;
-    [SerializeField] GameObject _player = null;
-
+    /// <summary>プレイヤーを配置する時のフラグ</summary>
     bool _playerSet = false;
+    /// <summary>アイテムの配置個数</summary>
+    int _itemCount = 0;
+
     public enum TYPE
     {
         NONE, WALL, FLOOR,
@@ -63,6 +78,7 @@ public class DungeonMapGenerator : MonoBehaviour
         RemakeMap();
     }
 
+    /// <summary>マップ設定の再設定</summary>
     public void RemakeMap()
     {
         X_MAX = x_MAX;    // MAP最大X
@@ -73,7 +89,7 @@ public class DungeonMapGenerator : MonoBehaviour
         Y_LOAD_MAX = y_LOAD_MAX;    // 部屋と接続するY通路最大数
         FLOOR_MAX = floor_MAX;  // 最大部屋数
         FLOOR_PADDING = floor_PADDING;  // 壁との余白
-        mapData = new TYPE[X_MAX, Y_MAX];
+        mapData = new TYPE[X_MAX, Y_MAX];   //マップデータ
     }
 
     /// <summary>
@@ -153,22 +169,47 @@ public class DungeonMapGenerator : MonoBehaviour
         MakeFloorData(rectData, mapData);
         MakeLoadData(rectData, mapData);
 
-        for(int y = 0; y < mapData.GetLength(0); y++)
+        for (int y = 0; y < mapData.GetLength(0); y++)
         {
-            for(int x = 0; x < mapData.GetLength(1); x++)   // x軸の配置
+            for (int x = 0; x < mapData.GetLength(1); x++)   // x軸の配置
             {
-                if(mapData[y, x] == TYPE.FLOOR || mapData[y, x] == TYPE.LOAD_UP || mapData[y, x] == TYPE.LOAD_DOWN || mapData[y, x] == TYPE.LOAD_RIGHT || mapData[y, x] == TYPE.LOAD_LEFT)
+                if (mapData[y, x] == TYPE.FLOOR || mapData[y, x] == TYPE.LOAD_UP || mapData[y, x] == TYPE.LOAD_DOWN || mapData[y, x] == TYPE.LOAD_RIGHT || mapData[y, x] == TYPE.LOAD_LEFT)
                 {
-                    //Instantiate(_floorTile,new Vector2(x,y), this.transform.rotation);
+                    // プレイヤーの生成
                     if (!_playerSet && mapData[y, x] == TYPE.FLOOR)
                     {
                         Instantiate(_player, new Vector2(x, y), this.transform.rotation);
+                        _hpText.PlayerHPDisplaySet();
                         _playerSet = true;
+                    }
+
+                    switch (Random.Range(0, 100))
+                    {
+                        // 床の生成
+                        case 0:
+                            if (mapData[y, x] == TYPE.FLOOR)
+                            {
+                                Instantiate(_floorBlock, new Vector2(x, y), this.transform.rotation);
+                            }
+                            break;
+                        // アイテムの生成
+                        case 1:
+                            if (_itemCount < _itemCountLimit)
+                            {
+                                Instantiate(_item[Random.Range(0, _item.Length)], new Vector2(x, y), this.transform.rotation);
+                                _itemCount++;
+                            }
+                            break;
+                        // 敵の生成
+                        case 2:
+                            Instantiate(_enemy[Random.Range(0, _enemy.Length)], new Vector2(x, y), this.transform.rotation);
+                            break;
                     }
                 }
                 else
                 {
-                    Instantiate(_floorTile, new Vector2(x, y), this.transform.rotation);
+                    // マップの生成
+                    Instantiate(_mapTile, new Vector2(x, y), this.transform.rotation);
                 }
             }
         }
