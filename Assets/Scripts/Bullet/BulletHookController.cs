@@ -47,8 +47,8 @@ public class BulletHookController : BulletBase
         // フックを固定する
         BulletRb2D.Sleep();
         // プレイヤーとフックの距離を測定
-        Vector2 _diff = this.transform.position - _player.transform.position;
+        Vector2 _diff = (this.transform.position - _player.transform.position).normalized;
         // プレイヤーに力を加える
-        _playerRb.AddForce(_diff * _springPower, ForceMode2D.Force);
+        _playerRb.AddForce(_diff * _springPower, ForceMode2D.Impulse);
     }
 }
