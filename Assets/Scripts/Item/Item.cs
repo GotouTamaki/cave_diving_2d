@@ -60,11 +60,11 @@ public class Item : ScriptableObject
     //    Enemies,
     //}
 
-    public void UseItem()
-    {
+    //public void UseItem()
+    //{
         //string address = $"Assets/Prefabs/{_subjectOfEffects}/{_objectName}.prefab";
         //GameObject targetPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
         //BulletParameter subjectComponent = targetPrefab.GetComponent<BulletParameter>();
         //subjectComponent.Interval = subjectComponent.Interval / _effectValue;
-    }
+    //}
 }

@@ -10,12 +10,13 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance = null;
     public Action InventoryCallBack;
     [SerializeField] ItemDataBase _inventoryData = null;
-    // 持ち物管理
+    /// <summary>持ち物管理用List</summary>
     [SerializeField] List<Item> _itemList = new List<Item>();
+    /// <summary>持ち物管理用Listを取得できます</summary>
     public List<Item> ItemList => _itemList;
     // アイテム番号受け取り用
-    int _itemNumber = 0;
-    public int ItemNumber { get =>_itemNumber; set =>_itemNumber = value; }
+    //int _itemNumber = 0;
+    //public int ItemNumber { get =>_itemNumber; set =>_itemNumber = value; }
     public ItemDataBase InventoryData => _inventoryData;
     // アイテム管理
     //Dictionary<Item, int> ItemNumber = new Dictionary<Item, int>();
@@ -43,7 +44,7 @@ public class InventoryManager : MonoBehaviour
     {
         //アイテムリストの追加
         _itemList.Add(_inventoryData.ItemLists[num]);
-        _inventoryData.ItemLists[num].UseItem();
+        //_inventoryData.ItemLists[num].UseItem();
         InventoryCallBack();
     }
 
