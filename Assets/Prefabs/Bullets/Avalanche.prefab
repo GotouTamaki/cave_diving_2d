@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6323642433291169009}
   - component: {fileID: 692090831882969587}
   - component: {fileID: 6323642433291169008}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Avalanche
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}

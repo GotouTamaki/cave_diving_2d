@@ -12,6 +12,7 @@ TagManager:
   - EnemyCannon
   - GroundChecker
   - CollisionDetection
+  - FadePanel
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - EnemyBullet
   - CollisionDetection
   - GroundChecker
-  - 
+  - Avalanche
   - 
   - 
   - 
