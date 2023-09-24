@@ -16,6 +16,19 @@ public class InventorySlot : MonoBehaviour
     Item _item = null;
     Color _beforeColor = Color.white;
 
+    void OnEnable()
+    {
+        // メニュー表示時に
+        if (_item != null)  // アイテムがあれば白に
+        {
+            _icon.color = Color.white;
+        }
+        else  // 無ければ_iconColorに
+        {
+            _icon.color = _iconColor;
+        }
+    }
+
     /// <summary>アイテムスロットにアイテムを追加する</summary>
     /// <param name="newItem">追加するアイテム</param>
     public void AddItemSlot(Item newItem)
@@ -25,7 +38,6 @@ public class InventorySlot : MonoBehaviour
         _icon.sprite = newItem.Icon;
         // アイコンが変色してしまうため白にする
         _icon.color = Color.white;
-        //_icon.enabled = true;
     }
 
     /// <summary>アイテムスロットからアイテムを削除する</summary>
@@ -36,7 +48,6 @@ public class InventorySlot : MonoBehaviour
         _icon.sprite = InventoryManager.instance.InventoryData.ItemLists[0].Icon;
         // 白から元に戻す
         _icon.color = _iconColor;
-        //_icon.enabled = true;
     }
 
     /// <summary>アイコンにマウスカーソルが重なった時の処理</summary>
@@ -57,13 +68,13 @@ public class InventorySlot : MonoBehaviour
     /// <summary>InformationPanelに表示する処理</summary>
     public void DisplayInfo()
     {
-        if(_item != null)
+        if(_item != null)   // アイテムがあれば
         {
-            _infoText.text = _item.Information;
+            _infoText.text = _item.Information;  // アイテムの説明を表示する
         }
         else
         {
-            _infoText.text = string.Empty;
+            _infoText.text = string.Empty;  // 無ければ表示しない
         }
     }
 }
