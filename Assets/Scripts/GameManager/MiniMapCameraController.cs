@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class MiniMapCameraController : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class MiniMapCameraController : MonoBehaviour
 
     void Start()
     {
-        MiniMapPositionSet();
+        StartCoroutine(MiniMapPositionSet());
     }
 
     void Update()
@@ -17,12 +18,13 @@ public class MiniMapCameraController : MonoBehaviour
         }
     }
 
-    void MiniMapPositionSet()
+    IEnumerator MiniMapPositionSet()
     {
         while (_player == null)
         {
             _player = GameObject.FindWithTag("Player");
             Debug.Log("ë{çıíÜ");
+            yield return null;
         }
     }
 }

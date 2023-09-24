@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class DDOLController : MonoBehaviour
 {
+    [SerializeField] InventoryManager _inventoryManager = null;
+
+    public static DDOLController instance = null;
+
+    public InventoryManager Inventory => _inventoryManager;
+
     void Awake()
     {
         if (FindObjectsOfType<DDOLController>().Length > 1)
@@ -13,6 +19,7 @@ public class DDOLController : MonoBehaviour
         {
             // ©•ª‚µ‚©‚¢‚È‚¢‚ÍA©•ª‚ğ DontDestroyOnLoad ‚É“o˜^‚·‚é
             DontDestroyOnLoad(this.gameObject);
+            instance = this;
         }
     }
 }
