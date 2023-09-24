@@ -6,7 +6,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     /// <summary>アイテムの種類</summary>
-    //[SerializeField] KindOfItem _kindOfItem;
+    [SerializeField] KindOfItem _kindOfItem;
     /// <summary>アイテムのアイコン</summary>
     [SerializeField] Sprite _icon;
     /// <summary>アイテムの名前</summary>
@@ -29,7 +29,7 @@ public class Item : ScriptableObject
     [SerializeField] int _playerJumpCountChange;
 
     /// <summary>アイテムの種類を取得できます</summary>
-    //public KindOfItem GetKindOfItem => _kindOfItem;
+    public KindOfItem GetKindOfItem => _kindOfItem;
     /// <summary>アイテムのアイコンを取得できます</summary>
     public Sprite Icon => _icon;
     /// <summary>アイテムの名前を取得できます</summary>
@@ -47,11 +47,11 @@ public class Item : ScriptableObject
     /// <summary>プレイヤーのジャンプ回数の変更効果の大きさを取得できます</summary>
     public int PlayerJumpCountChange => _playerJumpCountChange;
 
-    //public enum KindOfItem
-    //{
-    //    Weapon,
-    //    UseItem
-    //}
+    public enum KindOfItem
+    {
+        EnhancedItems,
+        KeyItems,
+    }
 
     //enum SubjectOfEffects
     //{
@@ -62,9 +62,9 @@ public class Item : ScriptableObject
 
     //public void UseItem()
     //{
-        //string address = $"Assets/Prefabs/{_subjectOfEffects}/{_objectName}.prefab";
-        //GameObject targetPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
-        //BulletParameter subjectComponent = targetPrefab.GetComponent<BulletParameter>();
-        //subjectComponent.Interval = subjectComponent.Interval / _effectValue;
+    //string address = $"Assets/Prefabs/{_subjectOfEffects}/{_objectName}.prefab";
+    //GameObject targetPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
+    //BulletParameter subjectComponent = targetPrefab.GetComponent<BulletParameter>();
+    //subjectComponent.Interval = subjectComponent.Interval / _effectValue;
     //}
 }

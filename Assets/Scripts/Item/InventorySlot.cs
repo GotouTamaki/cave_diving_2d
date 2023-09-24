@@ -70,7 +70,7 @@ public class InventorySlot : MonoBehaviour
     {
         if(_item != null)   // アイテムがあれば
         {
-            _infoText.text = _item.Information;  // アイテムの説明を表示する
+            _infoText.text = $"{_item.ItemName}\n{_item.Information}";  // アイテムの説明を表示する
         }
         else
         {

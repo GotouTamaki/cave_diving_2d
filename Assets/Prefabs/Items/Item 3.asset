@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf907f4edeb27474588de4f68d398f1b, type: 3}
-  m_Name: Item 2
+  m_Name: Item 3
   m_EditorClassIdentifier: 
-  _kindOfItem: 0
-  _icon: {fileID: 21300000, guid: e7b98f92df8690f47b0919e0f402e7f5, type: 3}
-  _itemName: "\u56DE\u5FA9\u30A2\u30A4\u30C6\u30E0"
-  _information: "\u5143\u6C17\u306B\u306A\u3063\u305F\uFF01"
-  _damageChangeValue: 0
-  _intervalChangeValue: 0.1
+  _kindOfItem: 1
+  _icon: {fileID: 21300038, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  _itemName: "\u30B8\u30E5\u30A8\u30EB"
+  _information: "\u5927\u4E8B\u306A\u3082\u306E"
+  _damageChangeValue: 1
+  _intervalChangeValue: 0
   _playerHealthValue: 0
   _playerJumpCountChange: 1

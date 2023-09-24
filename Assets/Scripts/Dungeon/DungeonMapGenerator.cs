@@ -28,6 +28,10 @@ public class DungeonMapGenerator : MonoBehaviour
     [SerializeField] GameObject[] _item = null;
     /// <summary>アイテムの配置個数制限</summary>
     [SerializeField] int _itemCountLimit = 40;
+    /// <summary>キーアイテムの設定</summary>
+    [SerializeField] GameObject[] _keyItem = null;
+    /// <summary>キーアイテムの配置個数制限</summary>
+    [SerializeField] int _keyItemCountLimit = 4;
 
     /// <summary>MAP最大X</summary>
     static int X_MAX;
@@ -61,6 +65,10 @@ public class DungeonMapGenerator : MonoBehaviour
     bool _playerSet = false;
     /// <summary>アイテムの配置個数</summary>
     int _itemCount = 0;
+    /// <summary>キーアイテムの配置個数</summary>
+    int _keyItemCount = 0;
+
+    public int KeyItemLimit => _keyItemCountLimit;
 
     public enum TYPE
     {
@@ -200,8 +208,16 @@ public class DungeonMapGenerator : MonoBehaviour
                                 _itemCount++;
                             }
                             break;
-                        // 敵の生成
+                        // キーアイテムの生成
                         case 2:
+                            if (_keyItemCount < _keyItemCountLimit)
+                            {
+                                Instantiate(_keyItem[Random.Range(0, _keyItem.Length)], new Vector2(x, y), this.transform.rotation);
+                                _keyItemCount++;
+                            }
+                            break;
+                        // 敵の生成
+                        case 3:
                             Instantiate(_enemy[Random.Range(0, _enemy.Length)], new Vector2(x, y), this.transform.rotation);
                             break;
                     }

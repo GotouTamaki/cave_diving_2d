@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -12,12 +13,13 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] ItemDataBase _inventoryData = null;
     /// <summary>持ち物管理用List</summary>
     [SerializeField] List<Item> _itemList = new List<Item>();
+    /// <summary>キーアイテムのカウント</summary>
+    int _clearCount = 0;
+
     /// <summary>持ち物管理用Listを取得できます</summary>
     public List<Item> ItemList => _itemList;
-    // アイテム番号受け取り用
-    //int _itemNumber = 0;
-    //public int ItemNumber { get =>_itemNumber; set =>_itemNumber = value; }
     public ItemDataBase InventoryData => _inventoryData;
+    public int ClearCount => _clearCount;
     // アイテム管理
     //Dictionary<Item, int> ItemNumber = new Dictionary<Item, int>();
     //アイコン管理の配列
@@ -38,12 +40,32 @@ public class InventoryManager : MonoBehaviour
     //    }
     //}
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += InventoryReset;
+    }
+
+    void InventoryReset(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "TitleScene")
+        {
+            _itemList.Clear();
+            _clearCount = 0;
+        }
+    }
+
     /// <summary>インベントリにアイテムを追加する</summary>
     /// <param name="item">インベントリに追加するアイテム</param>
     public void AddItem(int num)
     {
         //アイテムリストの追加
         _itemList.Add(_inventoryData.ItemLists[num]);
+
+        if(_inventoryData.ItemLists[num].GetKindOfItem == Item.KindOfItem.KeyItems)
+        {
+            _clearCount++;
+            Debug.Log($"ClearCount:{_clearCount}");
+        }
         //_inventoryData.ItemLists[num].UseItem();
         InventoryCallBack();
     }
