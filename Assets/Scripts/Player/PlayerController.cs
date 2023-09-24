@@ -122,7 +122,7 @@ public class PlayerController : InputBase
     {
         int jumpCountChange = 0;
 
-        foreach (Item item in InventoryManager.instance.ItemList)
+        foreach (Item item in DDOLController.instance.Inventory.ItemList)
         {
             jumpCountChange += item.PlayerJumpCountChange;
         }

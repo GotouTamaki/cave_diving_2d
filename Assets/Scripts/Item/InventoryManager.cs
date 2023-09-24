@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour
     //[SerializeField] ItemDataBase _itemDataBase;
     //[SerializeField] List<GameObject> _items = new List<GameObject>();
 
-    public static InventoryManager instance = null;
+    //public static InventoryManager instance = null;
     public Action InventoryCallBack;
     [SerializeField] ItemDataBase _inventoryData = null;
     /// <summary>持ち物管理用List</summary>
@@ -23,20 +23,20 @@ public class InventoryManager : MonoBehaviour
     //アイコン管理の配列
     //List<Image> Icons = new List<Image>();
 
-    private void Awake()
-    {
-        // シングルトンの設定
-        // １つまたは見つからない場合
-        if (FindObjectsOfType<InventoryManager>().Length <= 1)// <= を　否定 >
-        {
-            instance = this;
-        }
-        else
-        {
-            //見つかったが、２つあった場合
-            FindAnyObjectByType<InventoryManager>();
-        }
-    }
+    //private void Awake()
+    //{
+    //    // シングルトンの設定
+    //    // １つまたは見つからない場合
+    //    if (FindObjectsOfType<InventoryManager>().Length <= 1)// <= を　否定 >
+    //    {
+    //        instance = this;
+    //    }
+    //    else
+    //    {
+    //        //見つかったが、２つあった場合
+    //        instance = FindAnyObjectByType<InventoryManager>();
+    //    }
+    //}
 
     /// <summary>インベントリにアイテムを追加する</summary>
     /// <param name="item">インベントリに追加するアイテム</param>

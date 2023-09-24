@@ -16,12 +16,20 @@ public class SceneChanger : MonoBehaviour
         GameObject fadePanelParent = GameObject.FindWithTag("FadePanel");
         // フェードパネルの取得
         Image fadePanel = fadePanelParent.transform.Find("FadePanel").gameObject.GetComponent<Image>();
+        // メニュー画面の取得
+        Menu menu = GameObject.FindWithTag("Menu").GetComponent<Menu>();
+        // メニュー画面を非表示にする
+        menu.CanvasActiveSet(menu.GetComponent<CanvasGroup>(), false);
         // フェードモード 0がフェードイン 1がフェードアウト
         fadePanel.gameObject.SetActive(true);
         fadePanel.DOFade(1, _interval)
             .OnComplete(() =>
             {
+                // シーンを再読み込みする
                 SceneManager.LoadScene(sceneName);
+                // メニュー画面を非表示にする
+                menu.CanvasActiveSet(menu.GetComponent<CanvasGroup>(), false);
+                // フェードインさせる
                 fadePanel.DOFade(0, _interval).OnComplete(() => fadePanel.gameObject.SetActive(false));
             });
     }
@@ -34,10 +42,19 @@ public class SceneChanger : MonoBehaviour
         Image fadePanel = parentGameObject.transform.Find("FadePanel").gameObject.GetComponent<Image>();
         // フェードモード 0がフェードイン 1がフェードアウト
         fadePanel.gameObject.SetActive(true);
+        // メニュー画面の取得
+        Menu menu = GameObject.FindWithTag("Menu").GetComponent<Menu>();
+        // メニュー画面を非表示にする
+        menu.CanvasActiveSet(menu.GetComponent<CanvasGroup>(), false);
+        // フェードアウト
         fadePanel.DOFade(1, _interval)
             .OnComplete(() =>
             {
+                // シーンを再読み込みする
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                // メニュー画面を非表示にする
+                menu.CanvasActiveSet(menu.GetComponent<CanvasGroup>(), false);
+                // フェードインさせる
                 fadePanel.DOFade(0, _interval).OnComplete(() => fadePanel.gameObject.SetActive(false));
             });
     }

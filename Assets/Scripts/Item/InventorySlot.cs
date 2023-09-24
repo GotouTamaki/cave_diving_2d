@@ -45,7 +45,7 @@ public class InventorySlot : MonoBehaviour
     {
         //throw new UnityException("インベントリスロットの実装漏れアリ");
         // 空のアイコンにする
-        _icon.sprite = InventoryManager.instance.InventoryData.ItemLists[0].Icon;
+        _icon.sprite = DDOLController.instance.Inventory.InventoryData.ItemLists[0].Icon;
         // 白から元に戻す
         _icon.color = _iconColor;
     }

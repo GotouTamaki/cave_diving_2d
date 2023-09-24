@@ -1,22 +1,39 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : InputBase
 {
-    /// <summary>メニュー用のオブジェクト</summary>
-    [SerializeField] GameObject _menuCanvas = null;
+    CanvasGroup _canvasGroup = null;
 
     void Start()
     {
+        _canvasGroup = GetComponent<CanvasGroup>();
         // 非表示にする
-        _menuCanvas.SetActive(false);
+        CanvasActiveSet(_canvasGroup, false);
     }
 
     void Update()
     {
         // 特定ののキーををしたときに表示を切り替える
-        if(_inputController.Player.Choice.triggered)
+        if (_inputController.Player.Choice.triggered && SceneManager.GetActiveScene().name != ("TitleScene"))
         {
-            _menuCanvas.SetActive(!_menuCanvas.activeSelf);
+            CanvasActiveSet(_canvasGroup, !_canvasGroup.interactable);
+        }
+    }
+
+    public void CanvasActiveSet(CanvasGroup canvasGroup, bool active)
+    {
+        if (active)
+        {
+            canvasGroup.alpha = 1;
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+        }
+        else
+        {
+            canvasGroup.alpha = 0;
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
         }
     }
 }

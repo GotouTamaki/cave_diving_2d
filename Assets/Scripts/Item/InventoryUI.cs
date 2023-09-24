@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
@@ -7,25 +8,38 @@ public class InventoryUI : MonoBehaviour
     InventorySlot[] _inventorySlots = null;
     InventoryManager _inventoryManager = null;
 
-    void Start()
+    void Awake()
     {
         // 子オブジェクトのインベントリスロットを全て取得する
         _inventorySlots = _inventoryBox.GetComponentsInChildren<InventorySlot>();
-        _inventoryManager = InventoryManager.instance;
+        _inventoryManager = transform.parent.parent.parent.parent.GetComponent<InventoryManager>();
+    }
+
+    void OnEnable()
+    {
         if (_inventoryManager.InventoryCallBack == null)
         {
             _inventoryManager.InventoryCallBack += UIUpdate;
         }
     }
 
+    void OnDisable()
+    {
+        if (_inventoryManager.InventoryCallBack == null)
+        {
+            _inventoryManager.InventoryCallBack -= UIUpdate;
+        }
+    }
+
+
     /// <summary>UIの更新</summary>
     public void UIUpdate()
     {
         for (int i = 0; i < _inventorySlots.Length; i++)
         {
-            if (i < InventoryManager.instance.ItemList.Count)
+            if (i < DDOLController.instance.Inventory.ItemList.Count)
             {
-                _inventorySlots[i].AddItemSlot(InventoryManager.instance.ItemList[i]);
+                _inventorySlots[i].AddItemSlot(DDOLController.instance.Inventory.ItemList[i]);
             }
             else
             {

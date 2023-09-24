@@ -9,7 +9,7 @@ public class ItemBase : MonoBehaviour
     public void ItemGet()
     {
         //InventoryManager.instance.ItemNumber = _itemNum;
-        InventoryManager.instance.AddItem(_itemNum);
+        DDOLController.instance.Inventory.AddItem(_itemNum);
         Destroy(this.gameObject);
     }
 }

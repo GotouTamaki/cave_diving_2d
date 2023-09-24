@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerHPUI : MonoBehaviour
 {
-    [SerializeField] Text _hpText = null;
+    [SerializeField] Slider _hpSlider = null;
+    [SerializeField] Image _hpBar = null;
 
     GameObject _player = null;
     float _maxHp = 1;
@@ -12,11 +13,11 @@ public class PlayerHPUI : MonoBehaviour
 
     public void PlayerHPDisplaySet()
     {
-        _hpText = GetComponent<Text>();
+        //_hpSlider = GetComponent<Slider>();
         // プレイヤーを取得する
         _player = GameObject.FindWithTag("Player");
-        _maxHp = _player.GetComponent<CharacterBase>().CharacterMaxHp;
-        _hp = _player.GetComponent<CharacterBase>().CharacterHp;
+        _hpSlider.maxValue = _player.GetComponent<CharacterBase>().CharacterMaxHp;
+        _hpSlider.value = _player.GetComponent<CharacterBase>().CharacterHp;
         StartCoroutine(PlayerHPDisplay());
     }
 
@@ -26,34 +27,33 @@ public class PlayerHPUI : MonoBehaviour
         {
             if (_player == null)
             {
-                _hp = 0;
                 // HPの表示
-                _hpText.text = "HP:" + _hp.ToString("F0");
+                _hpSlider.value = 0;
+                GameObject.FindObjectOfType<GameOver>().OnGameOver();
                 break;
             }
 
             // HPの取得
-            if (_hp >= 0)
+            if (_hpSlider.value >= 0)
             {
-                _hp = _player.GetComponent<CharacterBase>().CharacterHp;
+                // HPの表示
+                _hpSlider.value = _player.GetComponent<CharacterBase>().CharacterHp;
             }
 
             // HPの色変更の処理
-            if (_hp <= _maxHp / 5 || _hp <= 1)
+            if (_hpSlider.value <= _hpSlider.maxValue / 5)
             {
-                _hpText.color = Color.red;
+                _hpBar.color = Color.red;
             }
-            else if (_hp <= _maxHp / 2)
+            else if (_hpSlider.value <= _hpSlider.maxValue / 2)
             {
-                _hpText.color = Color.yellow;
+                _hpBar.color = Color.yellow;
             }
             else
             {
-                _hpText.color = Color.white;
+                _hpBar.color = Color.green;
             }
 
-            // HPの表示
-            _hpText.text = "HP:" + _hp.ToString("F0");
             yield return new WaitForEndOfFrame();
         }
     }

@@ -62,7 +62,7 @@ public class CannonLeftController : InputBase
 
     void BulletParameterChange(BulletBase bulletBase)
     {
-        foreach (Item item in InventoryManager.instance.ItemList)
+        foreach (Item item in DDOLController.instance.Inventory.ItemList)
         {
             bulletBase.Damage += item.DamageChangeValue;
             bulletBase.Interval -= item.IntervalChangeValue;
