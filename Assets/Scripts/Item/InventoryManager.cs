@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,9 +41,14 @@ public class InventoryManager : MonoBehaviour
     //    }
     //}
 
-    private void OnEnable()
+    void OnEnable()
     {
         SceneManager.sceneLoaded += InventoryReset;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= InventoryReset;
     }
 
     void InventoryReset(Scene scene, LoadSceneMode mode)
@@ -51,6 +57,7 @@ public class InventoryManager : MonoBehaviour
         {
             _itemList.Clear();
             _clearCount = 0;
+            RemoveItem(0);
         }
     }
 

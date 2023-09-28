@@ -10,7 +10,7 @@ public class CannonRightController : InputBase
     /// <summary>ターゲットの位置</summary>
     [SerializeField] GameObject _target = default;
     /// <summary>弾の種類</summary>
-    [SerializeField] List<GameObject> _bullet = new List<GameObject>();
+    [SerializeField] List<BulletBase> _bullet = new List<BulletBase>();
     /// <summary>弾の種類の番号</summary>
     [SerializeField] int _bulletType = 0;
     /// <summary>大砲の角度制限</summary>s
@@ -42,8 +42,9 @@ public class CannonRightController : InputBase
         {
             if (_inputController.Player.FireRight.IsPressed())//押したことを判定
             {
-                GameObject bullet = Instantiate(_bullet[_bulletType], _muzzle.position, this.transform.rotation);
+                BulletBase bullet = Instantiate(_bullet[_bulletType], _muzzle.position, this.transform.rotation);
                 Debug.Log($"右砲発射、インターバル{bullet.GetComponent<BulletBase>().Interval}");
+                BulletParameterChange(bullet);
                 _interval = bullet.GetComponent<BulletBase>().Interval;
                 _timer = 0f;
             }
@@ -60,6 +61,21 @@ public class CannonRightController : InputBase
             }
 
             Debug.Log(_bulletType);
+        }
+    }
+
+    void BulletParameterChange(BulletBase bulletBase)
+    {
+        foreach (Item item in DDOLController.instance.Inventory.ItemList)
+        {
+            bulletBase.Damage += item.DamageChangeValue;
+            bulletBase.Interval -= item.IntervalChangeValue;
+        }
+
+        if (bulletBase.Interval <= bulletBase.MinInterval)
+        {
+            bulletBase.Interval = bulletBase.MinInterval;
+            Debug.Log($"{bulletBase}のインターバルはもう短くならない！！");
         }
     }
 }

@@ -19,6 +19,7 @@ public abstract class BulletBase : MonoBehaviour
 
     // 各種初期化
     Rigidbody2D _rb = null;
+    AudioSource _audioSource = null;
 
     /// <summary>弾のダメージを取得できます</summary>
     public int Damage { get => _damage; set => _damage = value; }

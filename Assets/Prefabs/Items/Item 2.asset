@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Item 2
   m_EditorClassIdentifier: 
   _kindOfItem: 0
-  _icon: {fileID: 21300000, guid: e7b98f92df8690f47b0919e0f402e7f5, type: 3}
-  _itemName: "\u56DE\u5FA9\u30A2\u30A4\u30C6\u30E0"
-  _information: "\u5143\u6C17\u306B\u306A\u3063\u305F\uFF01"
+  _icon: {fileID: 21300000, guid: 4300105e16c72e44fb3c42065d5cbc51, type: 3}
+  _itemName: "\u7DD1\u306E\u30B8\u30E5\u30A8\u30EB"
+  _information: "\u30B8\u30E3\u30F3\u30D7\u56DE\u6570\u3001\u30EA\u30ED\u30FC\u30C9\u901F\u5EA6\u4E0A\u6607"
   _damageChangeValue: 0
   _intervalChangeValue: 0.1
   _playerHealthValue: 0

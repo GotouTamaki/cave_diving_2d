@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class GameClear : MonoBehaviour
 {
-    [SerializeField] int _clearTerms = 0;
     [SerializeField] CanvasGroup _canvasGroup = null;
     [SerializeField] DungeonMapGenerator _dungeon = null;
 
