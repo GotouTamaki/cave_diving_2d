@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 437880634}
   - component: {fileID: 437880636}
   m_Layer: 5
-  m_Name: OperationExplanationPanel
+  m_Name: HelpPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 623985202}
   - component: {fileID: 623985201}
   m_Layer: 5
-  m_Name: OperationExplanationText (Legacy)
+  m_Name: HelpHeaderText (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -972,11 +972,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3520759332124474558, guid: 8fa9b50974fa13c43b94642b225dbe96, type: 3}
       propertyPath: m_Name
-      value: OperationExplanationButton
+      value: HelpButton
       objectReference: {fileID: 0}
     - target: {fileID: 3552921170401786138, guid: 8fa9b50974fa13c43b94642b225dbe96, type: 3}
       propertyPath: m_Text
-      value: Operation
+      value: Help
       objectReference: {fileID: 0}
     - target: {fileID: 3552921170401786138, guid: 8fa9b50974fa13c43b94642b225dbe96, type: 3}
       propertyPath: m_FontData.m_Font
@@ -1494,7 +1494,7 @@ GameObject:
   - component: {fileID: 1267150654}
   - component: {fileID: 1267150653}
   m_Layer: 5
-  m_Name: OperationButtonText (Legacy)
+  m_Name: HelpButtonText (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1517,7 +1517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -137, y: 8}
+  m_AnchoredPosition: {x: -80, y: 8}
   m_SizeDelta: {x: 122, y: 184}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1267150653
@@ -1586,7 +1586,7 @@ GameObject:
   - component: {fileID: 2009428942}
   - component: {fileID: 2009428941}
   m_Layer: 5
-  m_Name: OperationEffectText (Legacy)
+  m_Name: HelpText (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1609,7 +1609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 89, y: 8}
+  m_AnchoredPosition: {x: 146.00003, y: 8}
   m_SizeDelta: {x: 288, y: 184}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2009428941
@@ -1645,19 +1645,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HorizontalMove
-
-    LeftBulletChange
-
-    RightBulletChange
-
-    Jump
-
-    Menu
-
-    LeftBulletShot
-
-    RightBulletShot'
+  m_Text: "\u6A2A\u79FB\u52D5\n\u5DE6\u7832\u5F3E\u5909\u66F4\n\u53F3\u7832\u5F3E\u5909\u66F4\n\u30B8\u30E3\u30F3\u30D7\n\u30E1\u30CB\u30E5\u30FC\n\u5DE6\u7832\u767A\u5C04\n\u53F3\u7832\u767A\u5C04"
 --- !u!222 &2009428942
 CanvasRenderer:
   m_ObjectHideFlags: 0
