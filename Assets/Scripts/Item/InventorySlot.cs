@@ -76,6 +76,7 @@ public class InventorySlot : MonoBehaviour
         else
         {
             _infoText.text = "‹ó‚Á‚Û";  // –³‚¯‚ê‚Î•\Ž¦‚µ‚È‚¢
+            Debug.Log(_item);
         }
     }
 }
