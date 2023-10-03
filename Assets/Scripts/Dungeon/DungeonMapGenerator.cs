@@ -210,7 +210,7 @@ public class DungeonMapGenerator : MonoBehaviour
                             break;
                         // キーアイテムの生成
                         case 2:
-                            if (_keyItemCount < _keyItemCountLimit)
+                            if (_keyItemCount < _keyItemCountLimit && y % 6 == 0)
                             {
                                 Instantiate(_keyItem[Random.Range(0, _keyItem.Length)], new Vector2(x, y), this.transform.rotation);
                                 _keyItemCount++;
