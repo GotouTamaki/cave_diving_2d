@@ -3347,7 +3347,7 @@ GameObject:
   - component: {fileID: 1865525459}
   - component: {fileID: 1865525461}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: ItemGetText (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
