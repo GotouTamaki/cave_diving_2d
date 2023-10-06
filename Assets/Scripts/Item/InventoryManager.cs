@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +7,6 @@ public class InventoryManager : MonoBehaviour
 {
     //[SerializeField] ItemDataBase _itemDataBase;
     //[SerializeField] List<GameObject> _items = new List<GameObject>();
-
     //public static InventoryManager instance = null;
     public Action InventoryCallBack;
     [SerializeField] ItemDataBase _inventoryData = null;
