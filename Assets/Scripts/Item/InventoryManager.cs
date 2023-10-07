@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] ItemDataBase _inventoryData = null;
     /// <summary>持ち物管理用List</summary>
     [SerializeField] List<Item> _itemList = new List<Item>();
+    [SerializeField] ItemGetUI _itemGetUI = null;
     /// <summary>キーアイテムのカウント</summary>
     int _clearCount = 0;
 
@@ -65,8 +66,9 @@ public class InventoryManager : MonoBehaviour
     {
         //アイテムリストの追加
         _itemList.Add(_inventoryData.ItemLists[num]);
+        _itemGetUI.OutputLog(_inventoryData.ItemLists[num]);
 
-        if(_inventoryData.ItemLists[num].GetKindOfItem == Item.KindOfItem.KeyItems)
+        if (_inventoryData.ItemLists[num].GetKindOfItem == Item.KindOfItem.KeyItems)
         {
             _clearCount++;
             Debug.Log($"ClearCount:{_clearCount}");
