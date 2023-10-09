@@ -1,17 +1,17 @@
+using DG.Tweening;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.XInput;
 using UnityEngine.UI;
 
 public class BulletsMenu : InputBase
 {
-    [SerializeField] List<BulletBase> _bullets = new List<BulletBase>();
-    [SerializeField] List<Image> _images = new List<Image>();
+    [SerializeField] List<BulletBase> _bullets = new ();
+    [SerializeField] float _moveTime = 1f;
+    [SerializeField] Image[] _images = null;
 
     void Start()
     {
-
+        _images = GetComponentsInChildren<Image> ();
     }
 
     void Update()
@@ -37,10 +37,11 @@ public class BulletsMenu : InputBase
             Vector2 rectPos = rt.anchoredPosition;
             rectPos.x = pos.x;
             rectPos.y = pos.y;
-            rt.anchoredPosition = pos;
+            rt.DOAnchorPos(new Vector2(pos.x, pos.y), _moveTime);
+            //rt.anchoredPosition = pos;
 
             // ŽŸ‚ÌˆÊ’u‚ðŽžŒv‰ñ‚è‚É‰ñ“]
-            pos = Quaternion.Euler(0, 0, -angle) * pos;
+            pos = Quaternion.Euler(0, 0, -angle) * rectPos;
         }
     }
 }
