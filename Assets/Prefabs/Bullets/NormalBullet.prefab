@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ffb9d147f1d0142b8d74efc78236ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletIcon: {fileID: 0}
   _bulletSpeed: 10
   _lifeTime: 2
   _damage: 1

@@ -40,6 +40,8 @@ public class BulletsMenu : InputBase
 
         for (int i = 0; i < _bullets.Count; i++)
         {
+            BulletBase bullet = _bullets[i];
+            _images[i].sprite = bullet.BulletIcon;
             // 位置をセット
             RectTransform rt = _images[i].rectTransform;
             Vector2 rectPos = rt.anchoredPosition;

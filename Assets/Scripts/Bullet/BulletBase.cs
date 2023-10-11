@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
 public abstract class BulletBase : MonoBehaviour
 {
+    /// <summary>弾のアイコン</summary>
+    [SerializeField] Sprite _bulletIcon = null;
     /// <summary>弾のスピード</summary>
     [SerializeField] float _bulletSpeed = 1f;
     /// <summary>弾のライフタイム</summary>
@@ -21,6 +24,8 @@ public abstract class BulletBase : MonoBehaviour
     Rigidbody2D _rb = null;
     AudioSource _audioSource = null;
 
+    /// <summary>弾のアイコンを取得できます</summary>
+    public Sprite BulletIcon => _bulletIcon;
     /// <summary>弾のダメージを取得できます</summary>
     public int Damage { get => _damage; set => _damage = value; }
     /// <summary>弾のインターバルを取得できます</summary>
