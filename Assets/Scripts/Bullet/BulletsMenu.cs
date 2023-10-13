@@ -5,17 +5,25 @@ using UnityEngine.UI;
 
 public class BulletsMenu : InputBase
 {
-    [SerializeField] List<BulletBase> _bullets = new ();
+    [SerializeField] List<BulletBase> _bullets = new();
     [SerializeField] float _moveTime = 1f;
     [SerializeField] float _fadeTime = 1f;
-    [SerializeField] Image[] _images = null;
+    [SerializeField] RectTransform[] _rectPositions = null;
+    [SerializeField] Image[] _icons = null;
 
     CanvasGroup _canvasGroup;
 
     void Start()
     {
-        _images = GetComponentsInChildren<Image> ();
-        _canvasGroup = GetComponent<CanvasGroup> ();
+        _rectPositions = new RectTransform[_bullets.Count];
+        _icons = new Image[_bullets.Count];
+        //_images = GetComponentsInChildren<Image> ();
+        _canvasGroup = GetComponent<CanvasGroup>();
+        for (int i = 0; i < _bullets.Count; i++)
+        {
+            _rectPositions[i] = transform.GetChild(i).GetComponent<RectTransform>();
+            _icons[i] = transform.GetChild(i).GetChild(1).GetComponent<Image>();
+        }
     }
 
     void Update()
@@ -24,7 +32,7 @@ public class BulletsMenu : InputBase
         {
             UpdatePosition();
         }
-        else if(_inputController.Player.BulletChangeL.WasReleasedThisFrame())
+        else if (_inputController.Player.BulletChangeL.WasReleasedThisFrame())
         {
             ResetPosition();
         }
@@ -37,13 +45,15 @@ public class BulletsMenu : InputBase
 
         // 真上の位置
         Vector2 pos = Vector2.up * 150f;
+        //RectTransform[] _rectTransform = this.gameObject.GetComponentInChildren<RectTransform>();
 
         for (int i = 0; i < _bullets.Count; i++)
         {
+            // アイコンをセット
             BulletBase bullet = _bullets[i];
-            _images[i].sprite = bullet.BulletIcon;
+            _icons[i].sprite = bullet.BulletIcon;
             // 位置をセット
-            RectTransform rt = _images[i].rectTransform;
+            RectTransform rt = _rectPositions[i];
             Vector2 rectPos = rt.anchoredPosition;
             rectPos.x = pos.x;
             rectPos.y = pos.y;
@@ -61,9 +71,14 @@ public class BulletsMenu : InputBase
         for (int i = 0; i < _bullets.Count; i++)
         {
             // 位置をセット
-            RectTransform rt = _images[i].rectTransform;
+            RectTransform rt = _rectPositions[i];
             rt.DOAnchorPos(Vector2.zero, _moveTime);
             _canvasGroup.DOFade(0, _fadeTime);
         }
+    }
+
+    public void ButtonTest()
+    {
+        Debug.Log("押せた");
     }
 }
